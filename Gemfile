@@ -21,6 +21,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # encryption for user passwords
 gem 'bcrypt-ruby', '3.1.2'
+gem 'rspec'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
