@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  p1_x: MyString
+  p1_y: MyString
+  p2_x: MyString
+  p2_y: MyString
+  distance: MyString
+
+two:
+  p1_x: MyString
+  p1_y: MyString
+  p2_x: MyString
+  p2_y: MyString
+  distance: MyString

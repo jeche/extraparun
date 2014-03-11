@@ -9,5 +9,11 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require demo
+ *= require grid_12
+ *= require ie
+ *= require reset
+ *= require slider
+ *= require style
  *= require_tree .
  */
