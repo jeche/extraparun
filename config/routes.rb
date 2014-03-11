@@ -1,9 +1,10 @@
 Extraparun::Application.routes.draw do
+  #get "runs/myRuns"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
+  resources :runs
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'runs#myRuns'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
