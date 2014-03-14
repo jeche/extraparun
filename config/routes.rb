@@ -5,7 +5,7 @@ Extraparun::Application.routes.draw do
   resources :runs
   # You can have the root of your site routed with "root"
   root 'runs#myRuns'
-
+  get 'testing/map'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
