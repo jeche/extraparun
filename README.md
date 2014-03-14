@@ -10,6 +10,22 @@ Tutorials for Ruby on Rails: http://guides.rubyonrails.org/getting_started.html
 
 Tutorials for User Authentication: http://ruby.railstutorial.org/chapters/, see jdev branch for examples.  Do not edit in jdev please.
 
+HOW TO ASSOCIATE A COMMIT WITH AN ISSUE
+=======================================
+When finish doing work for an issue add all the files to a new commit and then commit with one of the following phrases in the message:
+    close
+    closes
+    closed
+    fix
+    fixes
+    fixed
+    resolve
+    resolves
+    resolved
+followed by a hashtag and then the number of the issue you are attempting to close.  In order to make sure the correct issue is closed in each one please also 
+
+Example: Attempting to close issue 1 in file
+
 
 
 HOW TO FORK A REPOSITORY
