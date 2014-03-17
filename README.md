@@ -11,7 +11,9 @@ extraparun
 <a name="Current Phase"/>
 ## Current Phase: DEVELOP SPRINT 1
 [Heroku Deployment](http://extraparun.herokuapp.com)
+
 [Ruby on Rails Tutorials](http://guides.rubyonrails.org/getting_started.html)
+
 [User Authentication Tutorial](http://ruby.railstutorial.org/chapters/, see jdev branch for examples.)
 
 Do not edit in jdev please.
