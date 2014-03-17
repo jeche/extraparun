@@ -8,7 +8,8 @@ extraparun
 [Commit to your Repo](#commit)  
 [Submit a Pull Request](#pull)  
 [Wiki Pages] (http://cs435.wmwikis.net/)
-[Heroku Deployment](http://extraparun.herokuapp.com)
+
+[**Heroku Deployment**](http://extraparun.herokuapp.com)
 
 
 <a name="Current Phase"/>
