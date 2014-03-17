@@ -25,11 +25,11 @@ followed by a hashtag and then the number of the issue you are attempting to clo
 
 Example: Attempting to close issues 34, 23, 42(in the extraparun repo that Jessica owns), 
 
-"This fixes jeche/extraparun#34 and also resolves jeche/extraparun#23, closes jeche/extraparun#42"
+        "This fixes jeche/extraparun#34 and also resolves jeche/extraparun#23, closes jeche/extraparun#42"
 
 If attempting to close an issue with a pull request instead of a commit you may similarly just type in the description of the pull request to close 43, 23, and 42:
 
-"closes #34, closes #23, closes #42"
+        "closes #34, closes #23, closes #42"
 
 
 To find the issue numbers assigned to you, you may look under the GitHub issues related to this project.
