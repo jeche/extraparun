@@ -1,8 +1,7 @@
 extraparun
 ==========
-CURRENT PHASE: ADDING WORK ITEMS
+CURRENT PHASE: DEVELOPMENT SPRINT 1
 ================================
-Currently adding Rails Hello World app and links to read on how to build a rails application on your computer.  Goal for spring break: Upload a version that has all the database connections mapped.
 
 Heroku Deployment Location: http://extraparun.herokuapp.com
 
@@ -22,10 +21,20 @@ When finish doing work for an issue add all the files to a new commit and then c
     resolve
     resolves
     resolved
-followed by a hashtag and then the number of the issue you are attempting to close.  In order to make sure the correct issue is closed in each one please also 
+followed by a hashtag and then the number of the issue you are attempting to close.  In order to make sure the correct issue is closed in each one please also commit with the following message:
 
-Example: Attempting to close issue 1 in file
+Example: Attempting to close issues 34, 23, 42(in the extraparun repo that Jessica owns), 
 
+"This fixes jeche/extraparun#34 and also resolves jeche/extraparun#23, closes jeche/extraparun#42"
+
+If attempting to close an issue with a pull request instead of a commit you may similarly just type in the description of the pull request to close 43, 23, and 42:
+
+"closes #34, closes #23, closes #42"
+
+
+To find the issue numbers assigned to you, you may look under the GitHub issues related to this project.
+
+More tutorial on how to fix issues with a commit: https://help.github.com/articles/closing-issues-via-commit-messages
 
 
 HOW TO FORK A REPOSITORY
@@ -59,4 +68,3 @@ Step 2: Up in the top-ish right side of the new page is a button that says "New 
 Step 3: Click "Create new pull request" in the middle of the page
 
 Step 4: Now you should see a screen that has a spot for a title and a description.  Fill these in thouroughly.  This will help Jessica know how to merge your code into the master branch.  The bottom of this page shows the changes that you want to merge and how they're different from what's already in master.  When you're done, click "Send Pull Request".  
-
