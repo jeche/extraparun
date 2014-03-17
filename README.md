@@ -7,11 +7,12 @@ extraparun
 [Fork a Repo](#fork)  
 [Commit to your Repo](#commit)  
 [Submit a Pull Request](#pull)  
+[Wiki Pages] (http://cs435.wmwikis.net/)
+[Heroku Deployment](http://extraparun.herokuapp.com)
+
 
 <a name="Current Phase"/>
 ## Current Phase: DEVELOP SPRINT 1
-[Heroku Deployment](http://extraparun.herokuapp.com)
-
 [Ruby on Rails Tutorials](http://guides.rubyonrails.org/getting_started.html)
 
 [User Authentication Tutorial](http://ruby.railstutorial.org/chapters/, see jdev branch for examples.)
