@@ -10,7 +10,8 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-ActiveRecord::Schema.define(version: 20140309214618) do
+
+ActiveRecord::Schema.define(version: 20140316212522) do
 
   create_table "routes", force: true do |t|
     t.string   "p1_x"
@@ -23,21 +24,16 @@ ActiveRecord::Schema.define(version: 20140309214618) do
   end
 
   create_table "runs", force: true do |t|
-    t.string   "runId"
+    t.string   "name"
+    t.string   "date"
+    t.string   "dist"
+    t.string   "humidity"
+    t.string   "temp"
     t.string   "hr"
     t.string   "min"
     t.string   "sec"
-    t.string   "date"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "password_digest"
   end
 
 end

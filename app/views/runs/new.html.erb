@@ -14,17 +14,44 @@
 </header>
 <!--==============================content================================-->
  <div class="block-1 box-shadow"> 
-  <%= form_for :run do |f| %>
+  <%= form_for :run, url: runs_path do |f| %>
+  <div class="run-spec-section">  
+    <strong><%= f.label :Name %>:</strong>
+	<span class="input-field"><%= text_field "run", "name", "size" => 25 %></span>
+  </div>
+  <div class="run-spec-section"> 
+	<strong><%= f.label :Date %>:</strong>
+    <span class="input-field"><%= text_field "run", "date", "size" => 15 %></span>
+	</div>
+  <div class="run-spec-section">
+	<strong><%= f.label :Time %>:</strong><br/>
+    <span class="input-label"><%= f.label :hours %></span>
+    <span class="input-field"><%= text_field "run", "hr", "size" => 4 %></span>
+    <span class="input-label"><%= f.label :minutes %></span>
+    <span class="input-field"><%= text_field "run", "min", "size" => 4 %></span>
+    <span class="input-label"><%= f.label :seconds %></span>
+    <span class="input-field"><%= text_field "run", "sec", "size" => 4 %></span>
+  </div>
+  <div class="run-spec-section">
+	<strong><%= f.label :Distance %>:</strong>
+	<span class="input-field"><%= text_field "run", "dist", "size" => 10 %></span><span>mi.</span>
+  </div>
+  <div class="run-spec-section">
+  <strong><%= f.label :'Weather Specs'%>:</strong><br/>
+	<span class="input-label"><%= f.label :temperature %></span>
+    <span class="input-field"><%= text_field "run", "temp", "size" => 4 %></span><br/>
+	<span class="input-label"><%= f.label :humidity %></span>
+    <span class="input-field"><%= text_field "run", "humidity", "size" => 6 %></span>
+  </div>
   <p>
-	<%= f.label :Time %>
-    <%= f.label :hr %>
-    <%= f.text_field :hr %>
-    <%= f.label :min %>
-    <%= f.text_field :min %>
-    <%= f.label :sec %>
-    <%= f.text_field :sec %>
-  </p>
-  <p>
-    <div class="search_button"><%= f.submit %></div>
+    <%= f.submit class:'search_button'%>
   </p>
 <% end %></div>
+<!--==============================footer=================================-->
+  <footer>
+    <p>2014 Extraparun</p> 
+	<p>Created By: Blohm, Chen, Jones, Torres</p>
+    <p>Website Template by <a target="_blank" href="http://www.templatemonster.com/" class="link">TemplateMonster.com</a></p>
+  </footer>
+</div>
+</body>
