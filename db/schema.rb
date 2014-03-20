@@ -12,14 +12,35 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20140306234411) do
-
-  create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "email"
+  create_table "routes", force: true do |t|
+    t.string   "p1_x"
+    t.string   "p1_y"
+    t.string   "p2_x"
+    t.string   "p2_y"
+    t.string   "distance"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password_digest"
-    t.string   "remember_token"
   end
 
+  create_table "runs", force: true do |t|
+    t.string   "name"
+    t.string   "date"
+    t.string   "dist"
+    t.string   "humidity"
+    t.string   "temp"
+    t.string   "hr"
+    t.string   "min"
+    t.string   "sec"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+end
+
+  create_table "users", force: true do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "password_digest"
+    t.string "remember_token"
+  end
 end

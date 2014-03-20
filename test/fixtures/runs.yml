@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  date: MyString
+  dist: MyString
+  humidity: MyString
+  temp: MyString
+  hr: MyString
+  min: MyString
+  sec: MyString
+
+two:
+  name: MyString
+  date: MyString
+  dist: MyString
+  humidity: MyString
+  temp: MyString
+  hr: MyString
+  min: MyString
+  sec: MyString

@@ -3,15 +3,17 @@ Extraparun::Application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
 
-  root "users#index"
+  resources :runs
+  
+  root to: 'runs#index'
   match '/signup', to: 'users#new', via: 'get'
   match '/signin',  to: 'sessions#new', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
+  
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -62,3 +64,4 @@ Extraparun::Application.routes.draw do
   #     resources :products
   #   end
 end
+
