@@ -4,11 +4,14 @@ Extraparun::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :runs
+
+  resources :goals
   
   root to: 'runs#index'
   match '/signup', to: 'users#new', via: 'get'
   match '/signin',  to: 'sessions#new', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
+  match '/goals', to: 'goals#index', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
