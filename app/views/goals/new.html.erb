@@ -1,0 +1,21 @@
+
+<%= form_for :goals, url: goals_path do |f| %>
+  <p>
+    <%= f.label :GoalName %><br>
+    <%= f.text_field :GoalName %>
+  </p>
+ 
+  <p>
+    <%= f.label :GoalTime %><br>
+    <%= f.text_field :GoalTime %>
+  </p>
+
+  <p>
+    <%= f.label :Route %><br>
+    <%= f.text_field :Route %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
