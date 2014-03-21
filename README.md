@@ -71,6 +71,13 @@ Step 4: If this code is ready for the master branch (aka it doesn't break ANYTHI
 
 <a name="pull"/>
 ## Submit a Pull Request
+Pre-steps:  If you know Jessica is not avaliable and you want to be able to keep up with the code in the master branch, do these steps first.
+Pre-step 1: You've already commited your changes, so now your goal is to pull down whatever is on master and merge it with your code.  Do a `git pull upstream master`.  If there are merging conflicts, git will let you know. 
+
+Pre-step 2: Merge your code with what's on master.  So, look at all of the files git has issues with.  Open them up.  There will be merging annotations on the file.  Fix them to match what the code should be and delete the extra merging annotations.  Save the file.
+
+Pre-step 3: Once you've done this with all of the files that had conflicts, pull down from upstream again to make sure you didn't miss anything (`git pull upstream master`).  Now, commit your changes to your local branch (follow the instructions for this above and use a message like "fixed merge issues").  You should now be able to submit a pull request following the rest of the steps that will not have to be manually merged.
+
 Step 1: Go to github.com and go to Jessica's master branch.  Up in the top-ish right side, there is a button that says "Pull Requests".  Click on that.
 
 Step 2: Up in the top-ish right side of the new page is a button that says "New Pull Request".  Click that.
