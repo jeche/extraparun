@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
 	has_secure_password
 	validates :password, length: { minimum: 6 }
+	has_many :runs, :dependent => :destroy
+	has_many :goals, :dependent => :destroy
 	def User.new_remember_token
 		SecureRandom.urlsafe_base64
 	end
