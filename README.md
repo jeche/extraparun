@@ -11,6 +11,8 @@ extraparun
 
 [**Heroku Deployment**](http://extraparun.herokuapp.com)
 
+[**Linking Models**](http://guides.rubyonrails.org/v2.3.11/association_basics.html)
+
 
 <a name="Current Phase"/>
 ## Current Phase: DEVELOP SPRINT 1
