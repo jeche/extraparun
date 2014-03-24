@@ -11,6 +11,8 @@ extraparun
 
 [**Heroku Deployment**](http://extraparun.herokuapp.com)
 
+[**Easy Ruby GUI Testing**](http://code.tutsplus.com/tutorials/ruby-for-newbies-testing-with-rspec--net-21297)
+
 [**Linking Models**](http://guides.rubyonrails.org/v2.3.11/association_basics.html)
 
 
