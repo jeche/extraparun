@@ -1,6 +1,5 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
-// You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).ready ( function(){
    $('#zipcode').bind('input', function() { 
     	zipcode = $(this).val(); // get the current value of the input field.
@@ -22,7 +21,10 @@ $(document).ready ( function(){
 });
 
 function getMapData() {
-	alert("here!");
+	$('#route').val(poly.getPath().getArray());
+    var dist = google.maps.geometry.spherical.computeLength(poly.getPath().getArray());
+	$('#distance').val(dist);
 }
+
 
 

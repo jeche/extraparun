@@ -36,7 +36,6 @@
 
         var path = poly.getPath();
         path.push(event.latLng);
-
         // Add a new marker at the new plotted point on the polyline.
         var marker = new google.maps.Marker({
           position: event.latLng,
@@ -45,7 +44,6 @@
         });
       }
 
-
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 </head>
@@ -53,5 +51,7 @@
 <div id="map-canvas"></div>
 <p><input id="zipcode" type="number"/><p>
 <%= form_tag("/testing/magic", method: "post") do %>
+  <%= hidden_field_tag(:route) %>
+  <%= hidden_field_tag(:distance) %>
   <%= submit_tag "Submit" , :onclick => "getMapData();" %>
 <% end %>
