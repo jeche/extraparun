@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321055400) do
+ActiveRecord::Schema.define(version: 20140326192409) do
 
   create_table "goals", force: true do |t|
     t.string   "GoalName"
@@ -21,11 +21,18 @@ ActiveRecord::Schema.define(version: 20140321055400) do
     t.datetime "updated_at"
   end
 
+  create_table "points", force: true do |t|
+    t.float    "lat"
+    t.float    "lon"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "orderNum"
+    t.integer  "route_id"
+  end
+
+  add_index "points", ["route_id"], name: "index_points_on_route_id"
+
   create_table "routes", force: true do |t|
-    t.string   "p1_x"
-    t.string   "p1_y"
-    t.string   "p2_x"
-    t.string   "p2_y"
     t.string   "distance"
     t.datetime "created_at"
     t.datetime "updated_at"
