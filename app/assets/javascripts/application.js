@@ -14,4 +14,4 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require a_cufon
-//= require_tree .
+//= require_tree ./global
