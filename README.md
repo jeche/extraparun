@@ -11,6 +11,8 @@ extraparun
 
 [**Heroku Deployment**](http://extraparun.herokuapp.com)
 
+[**Easy Ruby GUI Testing**](http://code.tutsplus.com/tutorials/ruby-for-newbies-testing-with-rspec--net-21297)
+
 [**Linking Models**](http://guides.rubyonrails.org/v2.3.11/association_basics.html)
 
 
@@ -18,7 +20,7 @@ extraparun
 ## Current Phase: DEVELOP SPRINT 1
 [Ruby on Rails Tutorials](http://guides.rubyonrails.org/getting_started.html)
 
-[User Authentication Tutorial](http://ruby.railstutorial.org/chapters/, see jdev branch for examples.)
+[User Authentication Tutorial](http://ruby.railstutorial.org/chapters/)
 
 Do not edit in jdev please.
 
