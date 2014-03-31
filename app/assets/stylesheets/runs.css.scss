@@ -1,3 +1,12 @@
 // Place all the styles related to the runs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#map-canvas {
+	height: 200px;
+	width: 500px;
+}
+
+.input_field {
+	border: 1px black solid;
+}

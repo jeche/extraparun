@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140326192409) do
+ActiveRecord::Schema.define(version: 20140330171917) do
 
   create_table "goals", force: true do |t|
     t.string   "GoalName"
@@ -36,7 +36,10 @@ ActiveRecord::Schema.define(version: 20140326192409) do
     t.string   "distance"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "run_id"
   end
+
+  add_index "routes", ["run_id"], name: "index_routes_on_run_id"
 
   create_table "runs", force: true do |t|
     t.string   "name"
