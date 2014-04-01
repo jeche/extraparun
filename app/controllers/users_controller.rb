@@ -28,10 +28,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        sign_in @user
+        format.html { redirect_to :root, notice: 'User was successfully updated.' }
+        format.json { head :no_content }
         flash[:success] = "Welcome to the Sample App!"
-        redirect_to @user
-      else
+       else
         format.html { render action: 'new' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
