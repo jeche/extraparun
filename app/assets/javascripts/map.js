@@ -32,9 +32,11 @@
          });
       } 
       
-      google.maps.event.addDomListener(window, 'load', initialize);
+      //google.maps.event.addDomListener(window, 'load', initialize);
+      //if($('#map-canvas').length && !$('#map-canvas div').length){initialize();}
 
 $(document).ready ( function(){
+  //if($('#map-canvas').length && !$('#map-canvas div').length){initialize();}
    $('#zipcode').bind('input', function() { 
     	zipcode = $(this).val(); // get the current value of the input field.
     	if (zipcode.length == 5) {
@@ -57,3 +59,16 @@ function getMapData() {
     alert(dist);
 	$('#distance').val(dist);
 }
+
+function loadScript() {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
+      'callback=initialize';
+  document.body.appendChild(script);
+}
+
+$(document).ready(loadScript);
+$(document).on("page:load", loadScript);
+
+
