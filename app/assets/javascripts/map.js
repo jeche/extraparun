@@ -1,42 +1,38 @@
-      var geocoder; //= new google.maps.Geocoder(); //To use later
-      var map; //Your map
-      var poly;
-      function initialize() {
-        geocoder = new google.maps.Geocoder();
-        var mapOptions = {
-          center: new google.maps.LatLng(-34.397, 150.644),
-          zoom: 8
-        };
-        map = new google.maps.Map(document.getElementById("map-canvas"),
-            mapOptions);
+var geocoder; //= new google.maps.Geocoder(); //To use later
+var map; //Your map
+var poly;
+function initialize() {
+  geocoder = new google.maps.Geocoder();
+  var mapOptions = {
+    center: new google.maps.LatLng(-34.397, 150.644),
+    zoom: 8
+  };
+  map = new google.maps.Map(document.getElementById("map-canvas"),
+      mapOptions);
 
-        var polyOptions = {
-          strokeColor: '#000000',
-          strokeOpacity: 1.0,
-          strokeWeight: 3
-        };
-        poly = new google.maps.Polyline(polyOptions);
-        poly.setMap(map);
-        google.maps.event.addListener(map, 'click', addLatLng);
-      }
-      
-      function addLatLng(event) {
+  var polyOptions = {
+    strokeColor: '#000000',
+    strokeOpacity: 1.0,
+    strokeWeight: 3
+  };
+  poly = new google.maps.Polyline(polyOptions);
+  poly.setMap(map);
+  google.maps.event.addListener(map, 'click', addLatLng);
+}
 
-          var path = poly.getPath();
-          path.push(event.latLng);
-          // Add a new marker at the new plotted point on the polyline.
-          var marker = new google.maps.Marker({
-            position: event.latLng,
-            title: '#' + path.getLength(),
-            map: map
-         });
-      } 
-      
-      //google.maps.event.addDomListener(window, 'load', initialize);
-      //if($('#map-canvas').length && !$('#map-canvas div').length){initialize();}
+function addLatLng(event) {
+
+    var path = poly.getPath();
+    path.push(event.latLng);
+    // Add a new marker at the new plotted point on the polyline.
+    var marker = new google.maps.Marker({
+      position: event.latLng,
+      title: '#' + path.getLength(),
+      map: map
+   });
+} 
 
 $(document).ready ( function(){
-  //if($('#map-canvas').length && !$('#map-canvas div').length){initialize();}
    $('#zipcode').bind('input', function() { 
     	zipcode = $(this).val(); // get the current value of the input field.
     	if (zipcode.length == 5) {
