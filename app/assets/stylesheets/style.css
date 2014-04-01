@@ -272,10 +272,10 @@ h1 a strong {
 	float:right;
 }
 .icon-1 {
-	background:url(../images/icon-1.png) 0 0 no-repeat;
+	background:url(icon-1.png) 0 0 no-repeat;
 }
 .icon-2 {
-	background:url(../images/icon-2.png) 0 0 no-repeat;
+	background:url(icon-2.png) 0 0 no-repeat;
 	margin-left:7px;
 }
 .social-icons a:hover {
