@@ -1,5 +1,33 @@
-<h1>New user</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', users_path %>
+<head>
+<!--[if lt IE 9]>
+<script src="js/html5.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
+<![endif]-->
+</head>
+<body>
+<div class="main">
+<div class="bg-img"></div>
+  <!--==============================header=================================-->
+<header>
+<h1><a href="#"><span class="page-header">Welcome</span><strong>New User!</strong></a></h1>
+</header>
+<!--==============================content================================-->
+  <section id="content">
+    <div class="container_12">
+	<div class="grid_12 top-1">
+		
+			<%= render 'form' %>		
+		
+		<%= link_to 'Back', users_path %>
+	</div>
+	</div>
+</section>
+<div class="clear"></div>
+<!--==============================footer=================================-->
+<footer>
+<p>2014 Extraparun</p> 
+<p>Created By: Blohm, Chen, Jones, Torres</p>
+<p>Website Template by <a target="_blank" href="http://www.templatemonster.com/" class="link">TemplateMonster.com</a></p>
+</footer>
+</div>
+</body>
