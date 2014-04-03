@@ -3,15 +3,15 @@ class GoalsController < ApplicationController
 	end
 
 	def create
-		@goal = Goals.new(post_params)
+		@goal = current_user.goals.new(post_params)
   		@goal.save
   		redirect_to @goal
 	end
 	def show
-  		@goal = Goals.find(params[:id])
+  		@goal = Goal.find(params[:id])
 	end
 	def index
-  		@goal = Goals.all
+  		@goal = Goal.all
 	end
 	private
 	def post_params
