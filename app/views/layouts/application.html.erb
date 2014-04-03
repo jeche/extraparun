@@ -10,6 +10,11 @@
 </head>
 <body>
 <%= render 'layouts/header' %>
+  <% if current_user %>
+    Logged in as <%= current_user.email %>.
+  <% else %>
+    Not signed in
+  <% end %>
 <%= yield %>
 
 </body>
