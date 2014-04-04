@@ -25,18 +25,16 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    respond_to :json
-    respond_to :html
-    respond_to do |format|
       if @user.save
         sign_in @user
         flash[:success] = "Welcome to the Sample App!"
         redirect_to @user
       else
-        format.html { render action: 'new' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        respond_to do |format|
+          format.html { render action: 'new' }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
-    end
   end
 
   # PATCH/PUT /users/1
