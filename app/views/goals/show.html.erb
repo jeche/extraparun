@@ -1,3 +1,9 @@
+<!--[if lt IE 9]><script language="javascript" type="text/javascript" src="excanvas.js"></script><![endif]-->
+<!--<script language="javascript" type="text/javascript" src="/app/assets/javascripts/dist/jquery.jqplot.min.js"></script>-->
+ <%= javascript_include_tag "dist/jquery.jqplot.min.js" %>
+ <%= javascript_include_tag "graph.js" %>
+<!--<link rel="stylesheet" type="text/css" href="/app/assets/javascripts/dist/jquery.jqplot.css" />-->
+<%= stylesheet_link_tag "jquery.jqplot.css"%>
 <p>
   <strong>Goal Name:</strong>
   <%= @goal.GoalName %>
@@ -5,10 +11,22 @@
  
 <p>
   <strong>Goal Time:</strong>
-  <%= @goal.GoalTime %>
+  Hr: <%= @goal.gtHour %> Min: <%= @goal.gtMin %> Sec: <%= @goal.gtSec %>
 </p>
 
 <p>
   <strong>Route:</strong>
   <%= @goal.Route %>
 </p>
+
+<p>
+  <strong>Distance:</strong>
+  <%= @goal.distance %>
+</p>
+
+<p>
+  <strong>Predictied Time:</strong>
+  hr:<%= @predictval[0] %> m:<%= @predictval[1] %> s:<%= @predictval[2] %> TotSec:<%= @predictval[3] %>
+</p>
+<div id="goalinfo" data-gthour="<%= @goal.gtHour %>" data-gtmin="<%= @goal.gtMin %>" data-gtsec="<%= @goal.gtSec %>" data-predtime="<%= @predictval[3] %>"></div>
+<div id="chartdiv" style="height:400px;width:300px; "></div>

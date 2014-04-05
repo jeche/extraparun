@@ -7,12 +7,17 @@
  
   <p>
     <%= f.label :GoalTime %><br>
-    <%= f.text_field :GoalTime %>
+    Hr:<%= f.text_field :gtHour %> Min:<%= f.text_field :gtMin %> Sec:<%= f.text_field :gtSec %>
   </p>
 
   <p>
     <%= f.label :Route %><br>
     <%= f.text_field :Route %>
+  </p>
+  
+  <p>
+    <%= f.label :distance %><br>
+    <%= f.text_field :distance %>
   </p>
  
   <p>
