@@ -27,7 +27,7 @@ class GoalsController < ApplicationController
 		count = 0
 		for ind_run in current_user.runs
 			#raise ind_run.route.distance.inspect
-			dist = ind_run.route.distance.to_i/1200
+			dist = ind_run.route.distance.to_i
 			time = ind_run.hr.to_i * 60 * 60
 			time += ind_run.min.to_i * 60
 			time += ind_run.sec.to_i
