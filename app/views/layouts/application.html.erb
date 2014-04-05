@@ -9,13 +9,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<!--<%= render 'layouts/header' %>
+<!--<%= render 'layouts/header' %>-->
+<%= yield %>
   <% if current_user %>
-    Logged in as <%= current_user.email %>.
+    <div style="text-align: center; ">Logged in as <%= current_user.email %>.</div>
   <% else %>
     Not signed in
   <% end %>
-<%= yield %>-->
+
 
 </body>
 </html>
