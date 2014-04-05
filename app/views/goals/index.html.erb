@@ -1,21 +1,69 @@
-<h1>Listing Goals</h1>
- 
-<table>
-  <tr>
-    <th>GoalName</th>
-    <th>GoalTime</th>
-    <th>Route</th>
-    <th>Distance</th>
-    <th>View Goal</th>
-  </tr>
- 
-  <% @goals.each do |goal| %>
-    <tr>
-      <td><%= goal.GoalName %></td>
-      <td><%= goal.gtHour %> <%= goal.gtMin %> <%= goal.gtSec %></td>
-      <td><%= goal.Route %></td>
-      <td><%= goal.distance %></td>
-      <td><%= link_to 'View', goal_path(goal)%></td>
-    </tr>
-  <% end %>
-</table>
+<head>
+<!--[if lt IE 9]>
+<script src="js/html5.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
+<![endif]-->
+<%= javascript_include_tag "goals.js"%>
+</head>
+<body>
+<div class="main">
+<div class="bg-img"></div>
+  <!--==============================header=================================-->
+<header>
+<div class="signout-link">
+	<a href="/" class="link">Sign out</a>
+</div>
+<h1><a href="#"><span class="page-header">My</span><strong>Goals</strong></a></h1>
+    <nav>
+      <div class="social-icons"> <a href="#" class="icon-2"></a> <a href="#" class="icon-1"></a> </div>
+      <ul class="menu">
+        <li><a href="/welcome">Home</a></li>
+        <li><a href="/runs">My Runs</a></li>
+        <li class="current"><a href="#">My Goals</a></li>
+        <li><a href="myProfile.html">My Profile</a></li>
+      </ul>
+    </nav>
+</header>
+<!--==============================content================================-->
+<section id="content">
+    <div class="container_12">
+	<div class="grid_12 top-1">
+        <div class="block-1 box-shadow">
+		<a href="goals/new" class="search_button">Add a goal</a>
+		<table>
+		<thead>
+			<th><strong>Goal Name</strong></th>
+			<th><strong>Goal Time</strong></th>
+			<th><strong>Route</strong></th>
+			<th><strong>Distance</strong></th>
+			<th><strong>View</strong></th>
+			<th><strong>Edit</strong></th>
+			<th><strong>Delete</strong></th>
+		</thead>
+		<tbody>		  
+		  <% @goals.each do |goal| %>
+			<tr>
+			  <td><%= goal.GoalName %></td>
+			  <td><%= "#{goal.gtHour} hr #{goal.gtMin} min #{goal.gtSec} sec" %></td>
+			  <td><%= goal.Route %></td>
+			  <td><%= "#{goal.distance} mi." %></td>
+			  <td><%= link_to 'View', goal_path(goal)%></td>
+			  <td><%= link_to 'Edit', edit_goal_path(goal) %></td>
+			   <td><%= link_to 'Destroy', goal_path(goal),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			</tr>
+		  <% end %>
+		  </tbody>
+		</table>
+		</div>
+      </div>
+	</div>
+  </section>
+  <!--==============================footer=================================-->
+  <footer>
+    <p>2014 Extraparun</p> 
+	<p>Created By: Blohm, Chen, Jones, Torres</p>
+    <p>Website Template by <a target="_blank" href="http://www.templatemonster.com/" class="link">TemplateMonster.com</a></p>
+  </footer>
+</div>
+</body>
