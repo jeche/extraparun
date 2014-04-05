@@ -14,6 +14,8 @@ Extraparun::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: 'delete'
   match '/goals', to: 'goals#index', via: 'get'
 
+  delete '/runs/:id', to: 'runs#destroy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   

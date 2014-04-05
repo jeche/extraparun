@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20140404185521) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "run_id"
+    t.integer  "numPoints"
   end
 
   add_index "routes", ["run_id"], name: "index_routes_on_run_id"

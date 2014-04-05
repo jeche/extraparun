@@ -18,10 +18,12 @@ function initialize() {
   poly = new google.maps.Polyline(polyOptions);
   poly.setMap(map);
   google.maps.event.addListener(map, 'click', addLatLng);
+  if ($('#route').data('route') != "") {
+    drawRoute();
+  }
 }
 
 function addLatLng(event) {
-
     var path = poly.getPath();
     path.push(event.latLng);
     // Add a new marker at the new plotted point on the polyline.
@@ -30,7 +32,34 @@ function addLatLng(event) {
       title: '#' + path.getLength(),
       map: map
    });
+    var meters = google.maps.geometry.spherical.computeLength(poly.getPath().getArray());
+    var miles = Math.round(meters / 1000 * 0.6214 *10)/10;  
+    $("#run_dist").val(miles);
 } 
+
+function drawRoute() {
+  var routeString = $('#route').data('route');
+  var numPoints = parseInt($('#route').data('numpoints'), 10);
+  var path = poly.getPath();
+  alert(numPoints);
+  for (i = 0; i < numPoints; i++) {
+    var points = routeString[i].replace(/[()]/g,''); 
+    var pointsList = points.split(",");
+    var myLatlng = new google.maps.LatLng(parseFloat(pointsList[0]),parseFloat(pointsList[1]));
+    alert(myLatlng);
+    path.push(myLatlng);
+    // Add a new marker at the new plotted point on the polyline.
+    var marker = new google.maps.Marker({
+      position: myLatlng,
+      title: '#' + path.getLength(),
+      map: map
+   });
+
+  }
+
+  //var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+
+}
 
 $(document).ready ( function(){
    $('#zipcode').bind('input', function() { 
@@ -51,9 +80,9 @@ $(document).ready ( function(){
 
 function getMapData() {
 	$('#route').val(poly.getPath().getArray());
-    var dist = google.maps.geometry.spherical.computeLength(poly.getPath().getArray());
-    alert(dist);
-	$('#distance').val(dist);
+    var meters = google.maps.geometry.spherical.computeLength(poly.getPath().getArray());
+    var miles = Math.round(meters / 1000 * 0.6214 *10)/10;  
+	$('#distance').val(miles);
 }
 
 function loadScript() {
