@@ -5,13 +5,17 @@
     <th>GoalName</th>
     <th>GoalTime</th>
     <th>Route</th>
+    <th>Distance</th>
+    <th>View Goal</th>
   </tr>
  
-  <% @goal.each do |goal| %>
+  <% @goals.each do |goal| %>
     <tr>
       <td><%= goal.GoalName %></td>
-      <td><%= goal.GoalTime %></td>
+      <td><%= goal.gtHour %> <%= goal.gtMin %> <%= goal.gtSec %></td>
       <td><%= goal.Route %></td>
+      <td><%= goal.distance %></td>
+      <td><%= link_to 'View', goal_path(goal)%></td>
     </tr>
   <% end %>
 </table>
