@@ -8,7 +8,7 @@ class RunsController < ApplicationController
 	end
 
 	def create
-		@run = Run.new(run_params)
+		@run = current_user.runs.new(run_params)
 		@run.save
 		route_string =  params[:route]
 		route_string = route_string.gsub(/[()]/, "")
@@ -22,12 +22,41 @@ class RunsController < ApplicationController
 			count += 2
 			orderNum += 1
 		end
+		@route.numPoints = orderNum
 		@run.route = @route
 		redirect_to @run
 	end
 
 	def show
 	  @run = Run.find(params[:id])
+	end
+
+	def destroy
+  		@run = Run.find(params[:id])
+  		@run.destroy
+ 
+  		redirect_to runs_path
+	end
+
+	def edit
+  		@run = Run.find(params[:id])
+  		@points = Array.new
+  		count = 0 
+  		while count < @run.route.numPoints
+  			point = Point.find_by route_id: @run.route.id, orderNum: count
+  			@points.push('(' + point.lat.to_s + ', ' + point.lon.to_s + ')')
+  			count += 1
+  		end
+	end
+
+	def update
+  		@run = Run.find(params[:id])
+ 
+  		if @run.update(params[:run].permit(:hr, :min, :sec, :temp, :humidity, :name, :dist, :date))
+    		redirect_to @run
+  		else
+    		render 'edit'
+  		end
 	end
 
 	private

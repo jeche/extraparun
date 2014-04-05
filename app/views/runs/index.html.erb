@@ -38,6 +38,9 @@
 				<th><strong>Distance</strong></th>
 				<th><strong>Temperature</strong></th>
 				<th><strong>Humidity</strong></th>
+				<th><strong>View</strong></th>
+				<th><strong>Edit</strong></th>
+				<th><strong>Delete</strong></th>
 			</thead>
 			<tbody>
 			<% @runs.each do |run| %>
@@ -49,6 +52,10 @@
 			  <td><%= "#{run.dist} mi."%></td>
 			  <td ><%= "#{run.temp} F"%></td>
 			  <td><%= "#{run.humidity}%" %></td>
+			  <td><%= link_to 'View', run_path(run)%></td>
+			  <td><%= link_to 'Edit', edit_run_path(run) %></td>
+			   <td><%= link_to 'Destroy', run_path(run),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
 			</tr>
 			<% end %>
 			</tbody>

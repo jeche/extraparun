@@ -25,8 +25,6 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
-    respond_to do |format|
       if @user.save
         format.html { redirect_to :root, notice: 'User was successfully updated.' }
         format.json { head :no_content }
@@ -34,8 +32,8 @@ class UsersController < ApplicationController
        else
         format.html { render action: 'new' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
-    end
   end
 
   # PATCH/PUT /users/1
