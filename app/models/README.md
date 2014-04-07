@@ -2,6 +2,8 @@ Models
 ======
 Routes
 ======
+Integer route_id
+
 Integer run_id
 
 Integer numPoints
@@ -10,6 +12,8 @@ String distance
 
 Points
 =====
+Integer point_id
+
 Float lat
 
 Float lon
@@ -18,6 +22,8 @@ Integer route_id
 
 Runs
 ====
+Integer run_id
+
 String name
 
 String date
@@ -40,6 +46,8 @@ Integer user_id
 
 Goals
 =====
+Integer goal_id
+
 String GoalName
 
 String Goaltime
@@ -50,6 +58,8 @@ Integer user_id
 
 Users
 =====
+Integer user_id
+
 String name
 
 String email
