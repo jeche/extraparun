@@ -29,6 +29,7 @@
         <span class="input-field"><%= text_field "run", "humidity", "size" => 6 %></span>
         <div id="map-canvas"></div>
         <span class="input-label"><%= f.label :zipcode %></span>
+        <button id="remove" type="button">Remove Last Point</button>
         <input id="zipcode" class="input_field" type="number"/>
         <%= hidden_field_tag(:route) %>
         <%= hidden_field_tag(:distance) %>
