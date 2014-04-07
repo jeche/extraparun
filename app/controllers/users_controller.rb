@@ -26,12 +26,15 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
       if @user.save
-        format.html { redirect_to :root, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
-        flash[:success] = "Welcome to the Sample App!"
+        respond_to do |format|
+          format.html { redirect_to :root, notice: 'User was successfully updated.' }
+          format.json { head :no_content }
+          flash[:success] = "Welcome to the Sample App!"
+        end
        else
-        format.html { render action: 'new' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        respond_to do |format|
+          format.html { render action: 'new' }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       end
   end
@@ -41,11 +44,15 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
+        respond_to do |format|
+          format.html { redirect_to @user, notice: 'User was successfully updated.' }
+          format.json { head :no_content }
+        end
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        respond_to do |format|
+          format.html { render action: 'edit' }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

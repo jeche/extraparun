@@ -1,6 +1,7 @@
 var geocoder; //= new google.maps.Geocoder(); //To use later
 var map; //Your map
 var poly;
+var markers = [];
 function initialize() {
   geocoder = new google.maps.Geocoder();
   var mapOptions = {
@@ -32,9 +33,8 @@ function addLatLng(event) {
       title: '#' + path.getLength(),
       map: map
    });
-    var meters = google.maps.geometry.spherical.computeLength(poly.getPath().getArray());
-    var miles = Math.round(meters / 1000 * 0.6214 *10)/10;  
-    $("#run_dist").val(miles);
+    markers.push(marker);
+    computeDistance();
 } 
 
 function drawRoute() {
@@ -46,7 +46,6 @@ function drawRoute() {
     var points = routeString[i].replace(/[()]/g,''); 
     var pointsList = points.split(",");
     var myLatlng = new google.maps.LatLng(parseFloat(pointsList[0]),parseFloat(pointsList[1]));
-    alert(myLatlng);
     path.push(myLatlng);
     // Add a new marker at the new plotted point on the polyline.
     var marker = new google.maps.Marker({
@@ -56,12 +55,47 @@ function drawRoute() {
    });
 
   }
-
-  //var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
-
 }
 
+// Sets the map on all markers in the array.
+function setAllMap(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+function removeLine() {
+  clearMarkers();
+  markers.pop();
+  var path = poly.getPath();
+  path.pop();
+  showMarkers();
+  computeDistance();
+}
+
+function clearMarkers() {
+  setAllMap(null);
+}
+
+// Shows any markers currently in the array.
+function showMarkers() {
+  setAllMap(map);
+}
+
+function computeDistance() {
+    var meters = google.maps.geometry.spherical.computeLength(poly.getPath().getArray());
+    var miles = Math.round(meters / 1000 * 0.6214 *10)/10; 
+    $("#run_dist").val(miles);
+    $('#distance').val(miles);
+}
+
+
+
 $(document).ready ( function(){
+    $('#remove').bind('click', function() { 
+      removeLine();
+    });
+
    $('#zipcode').bind('input', function() { 
     	zipcode = $(this).val(); // get the current value of the input field.
     	if (zipcode.length == 5) {
@@ -80,9 +114,6 @@ $(document).ready ( function(){
 
 function getMapData() {
 	$('#route').val(poly.getPath().getArray());
-    var meters = google.maps.geometry.spherical.computeLength(poly.getPath().getArray());
-    var miles = Math.round(meters / 1000 * 0.6214 *10)/10;  
-	$('#distance').val(miles);
 }
 
 function loadScript() {
