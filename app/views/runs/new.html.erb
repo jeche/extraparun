@@ -7,23 +7,22 @@
 <![endif]-->
 </head>
 <body>
+	<div class="main">
+	<div class="bg-img"></div>
+<!--==============================header=================================-->
+<header>
+  <h1><a href="index.html">Add<strong>a Run</strong></a></h1>
+</header>
+<!--==============================content================================-->
+<div id="route" data-route=""></div>
+<%= render 'form' %>
 
-  <div class="main">
-    <div class="bg-img"></div>
-  <!--==============================header=================================-->
-    <header>
-      <h1><a href="index.html">Add<strong>a Run</strong></a></h1>
-    </header>
-  <!--==============================content================================-->
-    <div id="route" data-route=""></div>
-    <%= render 'form' %>
- 
-    <%= link_to 'Back', runs_path %>
-  <!--==============================footer=================================-->
-    <footer>
-      <p>2014 Extraparun</p> 
-      <p>Created By: Blohm, Chen, Jones, Torres</p>
-      <p>Website Template by <a target="_blank" href="http://www.templatemonster.com/" class="link">TemplateMonster.com</a></p>
-    </footer>
-  </div>
+<%= link_to 'Back', runs_path %>
+<!--==============================footer=================================-->
+<footer>
+  <p>2014 Extraparun</p> 
+  <p>Created By: Blohm, Chen, Jones, Torres</p>
+  <p>Website Template by <a target="_blank" href="http://www.templatemonster.com/" class="link">TemplateMonster.com</a></p>
+</footer>
+</div>
 </body>

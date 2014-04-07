@@ -9,12 +9,15 @@
 <div class="bg-img"></div>
   <!--==============================header=================================-->
 <header>
-<h1><a href="index.html">My<strong>Runs</strong></a></h1>
+<div class="signout-link">
+	<a href="/" class="link">Sign out</a>
+</div>
+<h1><a href="#"><span class="page-header">My</span><strong>Runs</strong></a></h1>
     <nav>
       <div class="social-icons"> <a href="#" class="icon-2"></a> <a href="#" class="icon-1"></a> </div>
       <ul class="menu">
-        <li><a href="index.html">Home</a></li>
-        <li class="current"><a href="">My Runs</a></li>
+        <li><a href="/welcome">Home</a></li>
+        <li class="current"><a href="#">My Runs</a></li>
         <li><a href="/goals">My Goals</a></li>
         <li><a href="myProfile.html">My Profile</a></li>
       </ul>
@@ -35,6 +38,9 @@
 				<th><strong>Distance</strong></th>
 				<th><strong>Temperature</strong></th>
 				<th><strong>Humidity</strong></th>
+				<th><strong>View</strong></th>
+				<th><strong>Edit</strong></th>
+				<th><strong>Delete</strong></th>
 			</thead>
 			<tbody>
 			<% @runs.each do |run| %>
@@ -46,7 +52,7 @@
 			  <td><%= "#{run.dist} mi."%></td>
 			  <td ><%= "#{run.temp} F"%></td>
 			  <td><%= "#{run.humidity}%" %></td>
-			  <td><%= link_to 'Show', run_path(run) %></td>
+			  <td><%= link_to 'View', run_path(run)%></td>
 			  <td><%= link_to 'Edit', edit_run_path(run) %></td>
 			   <td><%= link_to 'Destroy', run_path(run),
                     method: :delete, data: { confirm: 'Are you sure?' } %></td>
