@@ -52,7 +52,7 @@ class GoalsController < ApplicationController
 			time = ind_run.hr.to_i * 60 * 60
 			time += ind_run.min.to_i * 60
 			time += ind_run.sec.to_i
-			#sum += (time/dist)
+			sum += (time/dist)
 			count += 1
 		end
 		if count > 0

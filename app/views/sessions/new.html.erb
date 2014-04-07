@@ -26,10 +26,12 @@
 				  <%= f.label :password %>
 				  <%= f.password_field :password %>
 				</div>
-				  
+		</div>
+				<div class="center">
+					<%= f.submit "Sign in", class: "search_button" %>
+				</div>
+
 			<% end %>
-		</div>		
-		<div class="center"><a href="/welcome" class="search_button">Sign In</a></div>	
 		<div class="center">New user? <%= link_to "Sign up now!", signup_path, :class=>"link"%></div>		
 	</div>
 	</div>
