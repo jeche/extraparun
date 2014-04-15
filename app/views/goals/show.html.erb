@@ -1,34 +1,11 @@
-<head>
-<!--[if lt IE 9]>
-<script src="js/html5.js"></script>
-<link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
-<![endif]-->
-<!--[if lt IE 9]><script language="javascript" type="text/javascript" src="excanvas.js"></script>
-<![endif]-->
-<!--<script language="javascript" type="text/javascript" src="/app/assets/javascripts/dist/jquery.jqplot.min.js">
-</script>-->
+<% @prepage = "Added" %>
+<% @page = "Goal" %>
+
 <%= javascript_include_tag "dist/jquery.jqplot.min.js" %>
 <%= javascript_include_tag "graph.js" %>
 <!--<link rel="stylesheet" type="text/css" href="/app/assets/javascripts/dist/jquery.jqplot.css" />-->
 <%= stylesheet_link_tag "jquery.jqplot.css"%>
-</head>
-<body>
-<div class="main">
-<div class="bg-img"></div>
-  <!--==============================header=================================-->
-<header>
-	<h1><a href="index.html">Added<strong>Goal:</strong></a></h1>
-	<nav>
-      <div class="social-icons"> <a href="#" class="icon-2"></a> <a href="#" class="icon-1"></a> </div>
-      <ul class="menu">
-        <li><a hreaf="/welcome">Home</a></li>
-        <li><a href="/runs">My Runs</li>
-        <li><a href="/goals">My Goals</a></li>
-        <li><a href="myProfile.html">My Profile</a></li>
-      </ul>
-    </nav>
-</header>
-<!--==============================content================================-->
+
 <section id="content">
     <div class="container_12">
 	<div class="grid_12 top-1">
@@ -66,11 +43,3 @@
 	</div>
 	</div>
 </section>	
-<!--==============================footer=================================-->
-  <footer>
-    <p>2014 Extraparun</p> 
-	<p>Created By: Blohm, Chen, Jones, Torres</p>
-    <p>Website Template by <a target="_blank" href="http://www.templatemonster.com/" class="link">TemplateMonster.com</a></p>
-  </footer>
-</div>
-</body>
