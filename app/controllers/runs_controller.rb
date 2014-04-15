@@ -10,7 +10,7 @@ class RunsController < ApplicationController
 	def create
 		@run = current_user.runs.new(run_params)
 		@run.save
-		route_string =  params[:route]
+		route_string =  params[:newRoute]
 		route_string = route_string.gsub(/[()]/, "")
 		lat_lon_list = route_string.split(",")
 		count = 0
