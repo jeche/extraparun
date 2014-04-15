@@ -85,7 +85,6 @@ function showMarkers() {
 function computeDistance() {
     var meters = google.maps.geometry.spherical.computeLength(poly.getPath().getArray());
     var miles = Math.round(meters / 1000 * 0.6214 *10)/10; 
-    $("#run_dist").val(miles);
     $('#distance').val(miles);
 }
 
