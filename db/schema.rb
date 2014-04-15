@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140404185521) do
+ActiveRecord::Schema.define(version: 20140415014203) do
 
   create_table "goals", force: true do |t|
     t.string   "GoalName"
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 20140404185521) do
   create_table "runs", force: true do |t|
     t.string   "name"
     t.string   "date"
-    t.string   "dist"
     t.string   "humidity"
     t.string   "temp"
     t.string   "hr"
@@ -60,6 +59,7 @@ ActiveRecord::Schema.define(version: 20140404185521) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "dists"
   end
 
   add_index "runs", ["user_id"], name: "index_runs_on_user_id"
