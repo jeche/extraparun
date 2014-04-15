@@ -49,7 +49,7 @@
 			  <td ><%= run.date %></td>
 			  <td><%= run.name %></td>
 			  <td ><%= "#{run.hr} hr #{run.min} min #{run.sec} sec" %></td>
-			  <td><%= "#{run.dist} mi."%></td>
+			  <td><%= "#{run.route.distance} mi."%></td>
 			  <td ><%= "#{run.temp} F"%></td>
 			  <td><%= "#{run.humidity}%" %></td>
 			  <td><%= link_to 'View', run_path(run)%></td>
@@ -59,8 +59,7 @@
 			</tr>
 			<% end %>
 			</tbody>
-		  </table>		  
-		  <a href="#" class="search_button">Edit Selected</a>
+		  </table>
 		  <a href="#" class="search_button">Remove Selected</a>
 		  
         </div>

@@ -19,7 +19,7 @@
       </div>
       <div class="run-spec-section">
         <strong><%= f.label :Distance %>:</strong>
-        <span class="input-field"><%= text_field "run", "dist", "size" => 10, :disabled => true %></span><span>mi.</span>
+        <span class="input-field"><%= text_field_tag "distance", nil, "size" => 10 %></span><span>mi.</span>
       </div>
       <div class="run-spec-section">
         <strong><%= f.label :'Weather Specs'%>:</strong><br/>
@@ -31,8 +31,7 @@
         <span class="input-label"><%= f.label :zipcode %></span>
         <button id="remove" type="button">Remove Last Point</button>
         <input id="zipcode" class="input_field" type="number"/>
-        <%= hidden_field_tag(:route) %>
-        <%= hidden_field_tag(:distance) %>
+        <%= hidden_field_tag(:newRoute) %>
       </div>
 
     <p>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140404185521) do
+ActiveRecord::Schema.define(version: 20140415014956) do
 
   create_table "goals", force: true do |t|
     t.string   "GoalName"
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 20140404185521) do
   create_table "runs", force: true do |t|
     t.string   "name"
     t.string   "date"
-    t.string   "dist"
     t.string   "humidity"
     t.string   "temp"
     t.string   "hr"

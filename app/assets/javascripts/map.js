@@ -41,7 +41,6 @@ function drawRoute() {
   var routeString = $('#route').data('route');
   var numPoints = parseInt($('#route').data('numpoints'), 10);
   var path = poly.getPath();
-  alert(numPoints);
   for (i = 0; i < numPoints; i++) {
     var points = routeString[i].replace(/[()]/g,''); 
     var pointsList = points.split(",");
@@ -85,7 +84,6 @@ function showMarkers() {
 function computeDistance() {
     var meters = google.maps.geometry.spherical.computeLength(poly.getPath().getArray());
     var miles = Math.round(meters / 1000 * 0.6214 *10)/10; 
-    $("#run_dist").val(miles);
     $('#distance').val(miles);
 }
 
@@ -113,7 +111,7 @@ $(document).ready ( function(){
 
 
 function getMapData() {
-	$('#route').val(poly.getPath().getArray());
+	$('#newRoute').val(poly.getPath().getArray());
 }
 
 function loadScript() {
