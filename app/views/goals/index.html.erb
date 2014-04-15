@@ -3,7 +3,6 @@
 <script src="js/html5.js"></script>
 <link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
 <![endif]-->
-<%= javascript_include_tag "goals.js"%>
 </head>
 <body>
 <div class="main">
@@ -32,29 +31,30 @@
 		<a href="goals/new" class="search_button">Add a goal</a>
 		<table>
 		<thead>
+			<th id="select-col-head"><strong>Select</strong></th>
 			<th><strong>Goal Name</strong></th>
 			<th><strong>Goal Time</strong></th>
 			<th><strong>Route</strong></th>
 			<th><strong>Distance</strong></th>
 			<th><strong>View</strong></th>
 			<th><strong>Edit</strong></th>
-			<th><strong>Delete</strong></th>
 		</thead>
 		<tbody>		  
-		  <% @goals.each do |goal| %>
+		  <% current_user.goals.each do |goal| %>
 			<tr>
+			  <td ><input type="checkbox" id='<%= "#{goal.id}" %>'></td>
 			  <td><%= goal.GoalName %></td>
 			  <td><%= "#{goal.gtHour} hr #{goal.gtMin} min #{goal.gtSec} sec" %></td>
 			  <td><%= goal.Route %></td>
 			  <td><%= "#{goal.distance} mi." %></td>
 			  <td><%= link_to 'View', goal_path(goal)%></td>
 			  <td><%= link_to 'Edit', edit_goal_path(goal) %></td>
-			   <td><%= link_to 'Destroy', goal_path(goal),
-                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
 			</tr>
 		  <% end %>
 		  </tbody>
 		</table>
+		<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+		<a href="#" class="search_button" onClick="removeSelectedGoals();">Remove Selected</a>
 		</div>
       </div>
 	</div>

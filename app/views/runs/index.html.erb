@@ -40,12 +40,11 @@
 				<th><strong>Humidity</strong></th>
 				<th><strong>View</strong></th>
 				<th><strong>Edit</strong></th>
-				<th><strong>Delete</strong></th>
 			</thead>
 			<tbody>
-			<% @runs.each do |run| %>
+			<% current_user.runs.each do |run| %>
 			<tr >
-			  <td ><%= check_box("run", "validated")%></td>
+			  <td ><input type="checkbox" id='<%= "#{run.id}" %>'></td>
 			  <td ><%= run.date %></td>
 			  <td><%= run.name %></td>
 			  <td ><%= "#{run.hr} hr #{run.min} min #{run.sec} sec" %></td>
@@ -54,13 +53,12 @@
 			  <td><%= "#{run.humidity}%" %></td>
 			  <td><%= link_to 'View', run_path(run)%></td>
 			  <td><%= link_to 'Edit', edit_run_path(run) %></td>
-			   <td><%= link_to 'Destroy', run_path(run),
-                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
 			</tr>
 			<% end %>
 			</tbody>
 		  </table>
-		  <a href="#" class="search_button">Remove Selected</a>
+		  <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+		  <a href="#" class="search_button" onClick="removeSelectedRuns();">Remove Selected</a>
 		  
         </div>
       </div>
