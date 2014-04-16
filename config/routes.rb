@@ -8,8 +8,10 @@ Extraparun::Application.routes.draw do
 
   resources :goals
   
-  root to: 'sessions#new'
+  root to: 'welcome#index'
+
   match '/signup', to: 'users#new', via: 'get'
+  match '/signinpage', to: 'sessions#new', via: 'get'
   match '/signin',  to: 'sessions#create', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'
   match '/welcome', to: 'welcome#index', via: 'get'
