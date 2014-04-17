@@ -11,24 +11,24 @@
       <%= form_for @run do |f| %>
       <div class="run-spec-section">  
         <strong><%= f.label :Name %>:</strong>
-        <span class="input-field"><%= text_field "run", "name", "size" => 25 %></span>
+        <span class="input-field"><%= text_field "run", "name", "size" => 25, "required" => "required" %></span>
       </div>
       <div class="run-spec-section"> 
         <strong><%= f.label :Date %>:</strong>
-        <span class="input-field"><input id="datepicker" type="text" name="run[date]"></span>
+        <span class="input-field"><input id="datepicker" type="text" name="run[date]" required="required"></span>
       </div>
       <div class="run-spec-section">
         <strong><%= f.label :Time %>:</strong><br/>
         <span class="input-label"><%= f.label :hours %></span>
-        <span class="input-field"><%= text_field "run", "hr", "size" => 4 %></span>
+        <span class="input-field"><%= text_field "run", "hr", "size" => 4, "required" => "required", "type" => "number"%></span>
         <span class="input-label"><%= f.label :minutes %></span>
-        <span class="input-field"><%= text_field "run", "min", "size" => 4 %></span>
+        <span class="input-field"><%= text_field "run", "min", "size" => 4, "required" => "required"%></span>
         <span class="input-label"><%= f.label :seconds %></span>
-        <span class="input-field"><%= text_field "run", "sec", "size" => 4 %></span>
+        <span class="input-field"><%= text_field "run", "sec", "size" => 4, "required" => "required" %></span>
       </div>
       <div class="run-spec-section">
         <strong><%= f.label :Distance %>:</strong>
-        <span class="input-field"><%= text_field_tag "distance", nil, "size" => 10 %></span><span>mi.</span>
+        <span class="input-field"><%= text_field_tag "distance", nil, "size" => 10, "required" => "required" %></span><span>mi.</span>
       </div>
       <div class="run-spec-section">
         <strong><%= f.label :'Weather Specs'%>:</strong><br/>
