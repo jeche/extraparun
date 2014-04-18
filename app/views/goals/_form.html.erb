@@ -16,7 +16,7 @@
 
   <div class="run-spec-section"> 
     <strong><%= f.label :Route %></strong>
-    <span class="input-field"><%= f.text_field :Route %></span>
+    <span class="input-field"><%= f.select(:Route, [["None", -1]] + @courses.collect {|p| [ p.name, p.id ] }) %></span>
   </div>
   
   <div class="run-spec-section"> 
