@@ -23,7 +23,7 @@ class RunsController < ApplicationController
 			orderNum += 1
 		end
 		@route.numPoints = orderNum
-		@run.route = @route
+		@run.routes.push(@route)
 		redirect_to @run
 	end
 
