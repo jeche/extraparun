@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140417182634) do
+ActiveRecord::Schema.define(version: 20140418025339) do
+
+  create_table "courses", force: true do |t|
+    t.integer  "runnable_id"
+    t.integer  "route_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "runnable_type"
+  end
 
   create_table "goals", force: true do |t|
     t.string   "GoalName"
@@ -41,7 +49,6 @@ ActiveRecord::Schema.define(version: 20140417182634) do
   create_table "routes", force: true do |t|
     t.string   "distance"
     t.integer  "runnable_id"
-    t.string   "runnable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "numPoints"

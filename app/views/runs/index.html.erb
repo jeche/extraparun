@@ -25,12 +25,16 @@
 		  <td ><%= run.date %></td>
 		  <td><%= run.name %></td>
 		  <td ><%= "#{run.hr} hr #{run.min} min #{run.sec} sec" %></td>
-		  <td><%= "#{run.route.distance} mi."%></td>
+		  <td><%= "#{run.routes.first.distance} mi."%></td>
 		  <td ><%= "#{run.temp} F"%></td>
 		  <td><%= "#{run.humidity}%" %></td>
 		  <td><%= link_to 'View', run_path(run)%></td>
 		  <td><%= link_to 'Edit', edit_run_path(run) %></td>
 		</tr>
+		<!--<% run.routes.first.points.each do |point| %>
+			<p><%= point.lat %> <%= point.lon %></p>
+		<% end %>
+		<p>RAWR</p>-->
 		<% end %>
 		</tbody>
 	  </table>
