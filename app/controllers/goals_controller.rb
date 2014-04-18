@@ -1,6 +1,7 @@
 class GoalsController < ApplicationController
 	def new
 		@goal = Goal.new
+		@courses = Route.where("name != ?", "'nil'")
 	end
 	
 	def index
