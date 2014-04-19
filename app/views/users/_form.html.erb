@@ -10,13 +10,13 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="edit-form">
   <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :email %>
+   <%= f.label :email %>
     <%= f.text_field :email %>
   </div>
   <div class="field">
@@ -27,7 +27,10 @@
     <%= f.label :password_confirmation, "Confirmation" %>
     <%= f.password_field :password_confirmation %>
   </div>
-  <div class="actions">
-    <%= f.submit class:'search_button'%>
   </div>
+  <div class="actions indent">
+    <span><%= f.submit class:'search_button'%></span>
+	<span><%= link_to 'Cancel', @user, class:"search_button" %></span>
+  </div>
+  
 <% end %>

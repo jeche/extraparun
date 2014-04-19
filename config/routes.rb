@@ -17,7 +17,7 @@ Extraparun::Application.routes.draw do
   match '/welcome', to: 'welcome#index', via: 'get'
   match '/runs', to: 'runs#index', via: 'get'  
   match '/goals', to: 'goals#index', via: 'get'
-
+  
   delete '/runs/:id', to: 'runs#destroy'
   delete '/goals/:id', to: 'goals#destroy'
 
