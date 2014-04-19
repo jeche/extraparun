@@ -11,23 +11,50 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirmation" %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="actions">
-    <%= f.submit class:'search_button'%>
-  </div>
+  <table class="input_table">
+    <tr class="input_td">
+      <div class="field">
+        <td class="input_td">
+          <%= f.label :name %>
+        </td>
+        <td class="input_td">
+          <%= f.text_field :name %>
+        </td>
+      </div>
+    </tr>
+    <tr class="input_td">
+      <div class="field">
+        <td class="input_td">
+          <%= f.label :email %>
+        </td>
+        <td class="input_td">
+          <%= f.text_field :email %>
+        </td>
+      </div>
+    </tr>
+    <tr class="input_td">
+      <div class="field">
+        <td class="input_td">
+          <%= f.label :password %>
+        </td>
+        <td class="input_td">
+          <%= f.password_field :password %>
+        </td>
+      </div>
+    </tr>
+    <tr class="input_td">
+      <div class="field">
+        <td class="input_td">
+          <%= f.label :password_confirmation, "Confirmation" %>
+        </td>
+        <td class="input_td">
+          <%= f.password_field :password_confirmation %>
+        </td>
+      </div>
+    </tr>
+  </table>
+    <div class="actions">
+      <%= f.submit class:'search_button'%>
+    </div>
+  
 <% end %>
