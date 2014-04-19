@@ -43,6 +43,16 @@ tr {
 tbody tr td {
 	border-right: 1px black solid;
 }
+
+#front-page-table{
+	border: none;
+}
+#front-page-table th, td{
+	border: none;
+}
+#front-page-table tbody tr td {
+	border-right: none;
+}
 #select-col-head{
 	width: 50px;
 }
@@ -533,4 +543,8 @@ dl dd a:hover {
 
 .indent{
 	margin-left: 30px;
+}
+.graph{
+	margin: 15px;
+	padding: 15px;
 }
