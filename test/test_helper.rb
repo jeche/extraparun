@@ -12,4 +12,10 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+  def login
+  	@controller = SessionsController.new
+	user = User.create(name: "Aslyn", email: "a@yahoo.com", password: "123456", password_confirmation: "123456")
+	post :new, :email => "a@yahoo.com", :password => "123456"
+  end
 end

@@ -1,3 +1,81 @@
+<% content_for :head do %><%= render 'welcome/javascript' %><% end %>
 <% @prepage = "Extraparun" %>
 <% @page = "Home" %>
-
+<section id="content">
+	<div class="container_12">
+		<div class="grid_12">
+        <div class="slider">
+          <ul class="items">
+			<% current_user.goals.each do |goal| %>
+            <li ><span class="graph"><%= image_tag "graph.jpg"%></span>
+              <div class="banner">
+                <p class="font-1">Goal <%= goal.id %></p>
+				<p class="font-2">Name: <%= goal.GoalName %></p>
+                <p class="font-2">Route: <%= goal.Route %></p>
+				<p class="font-2">Distance: <%= goal.distance %> mi.</p>
+				
+                <%= link_to 'View Goal', goal_path(goal) %> </div>
+            </li>
+			<% end %>
+          </ul>
+          <div class="pagination">
+            <ul>
+			<% current_user.goals.each do |goal| %>
+              <li><a href="#"></a></li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+		
+		<div class="grid_12 top-1">
+        <div class="box-shadow">
+          <div class="wrap block-2">
+            <div class="col-1">
+              <h2 class="p3"><span class="color-1">Latest</span> runs</h2>
+			  <div style="font-style: italic;">You can view separate runs by clicking on their date/name:</div>
+              <table id="front-page-table">
+				<thead>
+					<th><strong>Date</strong></th>
+					<th><strong>Name</strong></th>
+					<th><strong>Time</strong></th>
+					<th><strong>Distance</strong></th>
+				</thead>
+				<tbody>
+				<% current_user.runs.sort {|a,b| b.date <=> a.date }.each do |run| %>
+				<tr >
+				  <td ><%= link_to run.date, run_path(run) %></td>
+				  <td><%= link_to run.name, run_path(run) %></td>
+				  <td ><%= "#{run.hr} hr #{run.min} min #{run.sec} sec" %></td>
+				  <td><%= "#{run.routes.first.distance} mi."%></td>
+				  </tr>
+				
+				<% end %>
+				</tbody>
+			  </table>
+            </div>
+            <div class="col-2">
+				<div>
+				  <h2 class="p3"><span class="color-1">Marathon</span> list</h2>
+				  <ul class="list-1">
+					<li><span class="link"><a href="http://www.ingnycmarathon.org/">TCS NYC Marathon</a></span></li>
+					<li><a href="http://www.chicagomarathon.com/">Bank of America Chicago Marathon</a></li>
+					<li><a href="http://www.active.com/somerville-ma/running/distance-running-races/rock-and-run-boston-2014?INT=72-1-S1">Boston Marathon</a></li>
+					<li><a href="http://www.marinemarathon.com/">Marine Corps Marathon</a></li>
+				  </ul>
+				</div>
+				<div>
+				  <h2 class="p3"><span class="color-1">Useful</span> links</h2>
+				  <ul class="list-1">
+					<li><a href="http://www.runnersworld.com/race-finder">Race Finder</a></li>
+					<li><a href="http://www.marathonguide.com/">Marathon Guide</a></li>
+					<li><a href="http://www.marathonrookie.com/">Prepare for Marathon</a></li>
+				  </ul>
+				</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+	</div>
+</section>

@@ -3,7 +3,6 @@
 one:
   name: MyString
   date: MyString
-  dist: MyString
   humidity: MyString
   temp: MyString
   hr: MyString
@@ -13,7 +12,6 @@ one:
 two:
   name: MyString
   date: MyString
-  dist: MyString
   humidity: MyString
   temp: MyString
   hr: MyString

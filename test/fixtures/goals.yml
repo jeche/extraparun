@@ -2,10 +2,8 @@
 
 one:
   GoalName: MyString
-  GoalTime: MyString
   Route: MyString
 
 two:
   GoalName: MyString
-  GoalTime: MyString
   Route: MyString

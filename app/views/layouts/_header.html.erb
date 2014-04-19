@@ -6,10 +6,10 @@
     <nav>
       <div class="social-icons"> <a href="#" class="icon-2"></a> <a href="#" class="icon-1"></a> </div>
       <ul class="menu">
-        <li><a href="/welcome">Home</a></li>
+        <li><a href="/welcome" onClick="history.go(0)">Home</a></li>
         <li class="current"><a href="/runs">My Runs</a></li>
         <li><a href="/goals">My Goals</a></li>
-        <li><a href="myProfile.html">My Profile</a></li>
+        <li><%= link_to 'My Profile', user_path(current_user) %></a></li>
       </ul>
     </nav>
 </header>
