@@ -15,11 +15,13 @@ function loadScript(){
 	var predTime = $('#goalinfo').data('predtime');
 	var goalTime = (gtHour*3600) + (gtMin*60) + gtSec;
 	var predHash = $('#goalinfo').data('predhash');
+	console.log(predHash);
 	var predArray = [];
 	var goalArray = [];
 	for (var key in predHash) {
-		predArray.push([key, predHash[key]])
-		goalArray.push([key, goalTime/3600]);
+		var time = key.split("T");
+		predArray.push([time[0] + " " + time[1], predHash[key]])
+		goalArray.push([time[0] + " " + time[1], goalTime/3600]);
 	}
 	if ($('#chartdiv').attr("class") != "ready_for_graph") {
 		graph.destroy();
