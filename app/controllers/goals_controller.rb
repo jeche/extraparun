@@ -31,7 +31,6 @@ class GoalsController < ApplicationController
 	def show
   		@goal = Goal.find(params[:id])
   		@predictval = predict
-  		@predHash = @goal.predictions.to_json
 	end
 	
 	def destroy
@@ -75,11 +74,13 @@ class GoalsController < ApplicationController
 			goal = Goal.find(params[:id])
 			avg = sum/count
 			pred = avg * goal.distance.to_i
-			goal.predictions[Date.today.to_s] = pred/3600
+			goal.predictions[Time.now.strftime("%Y-%m-%dT%H:%M")] = pred/3600
+			@predHash = JSON.generate(goal.predictions)
 			goal.save
 			@ret = [(pred/3600), (pred%3600)/60, (pred%3600)%60, pred]
 		else
 			@ret = 0
 		end
+		
 	end
 end
