@@ -10,6 +10,7 @@ class GoalsController < ApplicationController
 
 	def create
 		@goal = current_user.goals.new(goal_params)
+		@goal.predictions = Hash.new
   		@goal.save
   		route_string =  params[:newRoute]
 		route_string = route_string.gsub(/[()]/, "")
@@ -30,6 +31,7 @@ class GoalsController < ApplicationController
 	def show
   		@goal = Goal.find(params[:id])
   		@predictval = predict
+  		@predHash = @goal.predictions.to_json
 	end
 	
 	def destroy
@@ -62,7 +64,6 @@ class GoalsController < ApplicationController
 		sum = 0
 		count = 0
 		for ind_run in current_user.runs
-			#raise ind_run.route.distance.inspect
 			dist = ind_run.routes.first.distance.to_i
 			time = ind_run.hr.to_i * 60 * 60
 			time += ind_run.min.to_i * 60
@@ -71,11 +72,13 @@ class GoalsController < ApplicationController
 			count += 1
 		end
 		if count > 0
+			goal = Goal.find(params[:id])
 			avg = sum/count
-			pred = avg * Goal.find(params[:id]).distance.to_i
+			pred = avg * goal.distance.to_i
+			goal.predictions[Date.today.to_s] = pred/3600
+			goal.save
 			@ret = [(pred/3600), (pred%3600)/60, (pred%3600)%60, pred]
 		else
-			raise "hello"
 			@ret = 0
 		end
 	end
