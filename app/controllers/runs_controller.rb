@@ -1,4 +1,7 @@
 class RunsController < ApplicationController
+	before_action :signed_in_user
+	before_action :correct_user, only: [:show, :edit, :destroy, :update]
+
 	def new
 		@run = Run.new
 	end
@@ -58,6 +61,12 @@ class RunsController < ApplicationController
     		render 'edit'
   		end
 	end
+
+	def correct_user
+      @run = current_user.runs.find_by(id: params[:id])
+      flash[:badBoy] = "Bad bad bad.  That's not yours!"
+      redirect_to root_url if @run.nil?
+    end
 
 	private
 	  def run_params

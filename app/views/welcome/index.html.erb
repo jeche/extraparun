@@ -3,6 +3,10 @@
 <% @page = "Home" %>
 <% @highlight = "Home" %>
 
+<% if flash[:badBoy] %>
+	<div class="alert alert-danger"><%= flash[:badBoy] %></div>
+<% end %>
+
 <section id="content">
 	<div class="container_12">
 		<div class="grid_12">

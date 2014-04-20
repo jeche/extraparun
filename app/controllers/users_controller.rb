@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:show, :edit, :destroy, :update]
 
   # GET /users
   # GET /users.json
@@ -57,6 +58,11 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
+  end
+
+  def correct_user
+    flash[:badBoy] = "Bad bad bad.  That's not yours!"
+    redirect_to root_url if current_user != @user
   end
 
   private

@@ -1,4 +1,7 @@
 class GoalsController < ApplicationController
+	before_action :signed_in_user
+	before_action :correct_user, only: [:show, :edit, :destroy, :update]
+
 	def new
 		@goal = Goal.new
 		@courses = Route.where("name != ?", "'nil'")
@@ -80,7 +83,12 @@ class GoalsController < ApplicationController
 			@ret = [(pred/3600), (pred%3600)/60, (pred%3600)%60, pred]
 		else
 			@ret = 0
-		end
-		
+		end	
 	end
+
+	def correct_user
+      @goal = current_user.goals.find_by(id: params[:id])
+      flash[:badBoy] = "Bad bad bad.  That's not yours!"
+      redirect_to root_url if @goal.nil?
+    end
 end
