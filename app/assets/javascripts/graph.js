@@ -15,24 +15,36 @@ function loadScript(){
 	var predTime = $('#goalinfo').data('predtime');
 	var goalTime = (gtHour*3600) + (gtMin*60) + gtSec;
 	var predHash = $('#goalinfo').data('predhash');
-	console.log(predHash);
 	var predArray = [];
 	var goalArray = [];
+	var keys = [];
+
 	for (var key in predHash) {
-		var time = key.split("T");
-		predArray.push([time[0] + " " + time[1], predHash[key]])
+		keys.push(key);
+	}
+
+	keys.sort();
+	// Gets the first time the user has listed and finds one day before that.
+	var startingTimeList = (keys[0].split("T"))[0].split("-");
+	var rightDate = parseInt(startingTimeList[2]) - 1;
+	var startingTime = startingTimeList[0] + "-" + startingTimeList[1] + "-" + rightDate
+
+	for (var i = 0; i < keys.length; i++) {
+		var time = keys[i].split("T");
+		predArray.push([time[0] + " " + time[1], predHash[keys[i]]])
 		goalArray.push([time[0] + " " + time[1], goalTime/3600]);
 	}
+
 	if ($('#chartdiv').attr("class") != "ready_for_graph") {
 		graph.destroy();
-		alert("destroyed mwaahhaahaa");
 	}
+	console.log(predArray);
 	var graph = $.jqplot('chartdiv',  [ goalArray, predArray ], {
 		axes:{
 			xaxis:{
 				renderer:$.jqplot.DateAxisRenderer,
 				tickOptions:{formatString:'%b %#d, %y'},
-				min: predArray[0][0],
+				min: startingTime,
 				tickInterval:'1 day'
 			}
 		},
