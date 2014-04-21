@@ -27,8 +27,16 @@
 		  <td><%= run.name %></td>
 		  <td ><%= "#{run.hr} hr #{run.min} min #{run.sec} sec" %></td>
 		  <td><%= "#{run.routes.first.distance} mi."%></td>
-		  <td ><%= "#{run.temp} F"%></td>
-		  <td><%= "#{run.humidity}%" %></td>
+		  <% if run.temp != "-1" %>
+				<td ><%= "#{run.temp} F"%></td>
+		  <% else %>
+				<td >F</td>
+		  <% end %>
+		  <% if run.humidity != "-1" %>
+				<td ><%= "#{run.humidity} F"%></td>
+		  <% else %>
+				<td ></td>
+		  <% end %>
 		  <td><%= link_to 'View', run_path(run)%></td>
 		  <td><%= link_to 'Edit', edit_run_path(run) %></td>
 		</tr>

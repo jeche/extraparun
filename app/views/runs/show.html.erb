@@ -32,11 +32,19 @@
 				</p>
 				<p>
 					<strong>Temperature:</strong>
-				    <%= @run.temp %><span>F</span>
+					<% if @run.temp != "-1" %>
+				    	<%= @run.temp %><span>F</span>
+				    <% else %>
+				    	<span>F</span>
+				    <% end %>
 				</p>
 				<p>
 					<strong>Humidity:</strong>
-				    <%= @run.humidity %><span>%</span>
+					<% if @run.humidity != "-1" %>
+				    	<%= @run.humidity %><span>F</span>
+				    <% else %>
+				    	<span></span>
+				    <% end %>
 				</p>
 				<%= link_to 'Back', runs_path %>
 				<%= link_to 'Edit', edit_run_path(@run) %>
