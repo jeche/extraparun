@@ -28,9 +28,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
       if @user.save
         respond_to do |format|
-          format.html { redirect_to :root, notice: 'User was successfully updated.' }
+          format.html { redirect_to :root }
           format.json { head :no_content }
-          flash[:success] = "Welcome to the Sample App!"
         end
        else
         respond_to do |format|
