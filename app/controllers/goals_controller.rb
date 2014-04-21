@@ -1,4 +1,7 @@
 class GoalsController < ApplicationController
+	before_action :signed_in_user
+	before_action :correct_user, only: [:show, :edit, :destroy, :update]
+
 	def new
 		@goal = Goal.new
 		@courses = Route.where("name != ?", "'nil'")
@@ -10,6 +13,7 @@ class GoalsController < ApplicationController
 
 	def create
 		@goal = current_user.goals.new(goal_params)
+		@goal.predictions = Hash.new
   		@goal.save
   		route_string =  params[:newRoute]
 		route_string = route_string.gsub(/[()]/, "")
@@ -62,7 +66,6 @@ class GoalsController < ApplicationController
 		sum = 0
 		count = 0
 		for ind_run in current_user.runs
-			#raise ind_run.route.distance.inspect
 			dist = ind_run.routes.first.distance.to_i
 			time = ind_run.hr.to_i * 60 * 60
 			time += ind_run.min.to_i * 60
@@ -71,12 +74,21 @@ class GoalsController < ApplicationController
 			count += 1
 		end
 		if count > 0
+			goal = Goal.find(params[:id])
 			avg = sum/count
-			pred = avg * Goal.find(params[:id]).distance.to_i
+			pred = avg * goal.distance.to_i
+			goal.predictions[Time.now.strftime("%Y-%m-%dT%H:%M")] = pred/3600
+			@predHash = JSON.generate(goal.predictions)
+			goal.save
 			@ret = [(pred/3600), (pred%3600)/60, (pred%3600)%60, pred]
 		else
-			raise "hello"
 			@ret = 0
-		end
+		end	
 	end
+
+	def correct_user
+      @goal = current_user.goals.find_by(id: params[:id])
+      flash[:badBoy] = "Bad bad bad.  That's not yours!"
+      redirect_to root_url if @goal.nil?
+    end
 end

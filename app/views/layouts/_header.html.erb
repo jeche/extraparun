@@ -6,10 +6,26 @@
     <nav>
       <div class="social-icons"> <a href="#" class="icon-2"></a> <a href="#" class="icon-1"></a> </div>
       <ul class="menu">
-        <li><a href="/welcome" onClick="history.go(0)">Home</a></li>
-        <li class="current"><a href="/runs">My Runs</a></li>
-        <li><a href="/goals">My Goals</a></li>
-        <li><%= link_to 'My Profile', user_path(current_user) %></a></li>
+        <% if @highlight == "Home" %>
+          <li class="current"><a href="/welcome" onClick="history.go(0)">Home</a></li>
+        <% else %>
+          <li><a href="/welcome">Home</a></li>
+        <% end %>
+        <% if @highlight == "Run" %>
+          <li class="current"><a href="/runs">My Runs</a></li>
+        <% else %>
+          <li><a href="/runs">My Runs</a></li>
+        <% end %>
+        <% if @highlight == "Goal" %>
+          <li class="current"><a href="/goals">My Goals</a></li>
+        <% else %>
+          <li><a href="/goals">My Goals</a></li>
+        <% end %>
+        <% if @highlight == "User" %>
+          <li class="current"><%= link_to 'My Profile', user_path(current_user) %></a></li>
+        <% else %>
+          <li><%= link_to 'My Profile', user_path(current_user) %></a></li>
+        <% end %>
       </ul>
     </nav>
 </header>

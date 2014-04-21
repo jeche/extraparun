@@ -1,7 +1,9 @@
 <% @prepage = "Added" %>
 <% @page = "Goal" %>
+<% @highlight = "Goal" %>
 
 <%= javascript_include_tag "dist/jquery.jqplot.min.js" %>
+<%= javascript_include_tag "dist/plugins/jqplot.dateAxisRenderer.min.js" %>
 <%= javascript_include_tag "graph.js" %>
 <!--<link rel="stylesheet" type="text/css" href="/app/assets/javascripts/dist/jquery.jqplot.css" />-->
 <%= stylesheet_link_tag "jquery.jqplot.css"%>
@@ -33,11 +35,11 @@
 				</p>
 
 				<p>
-				  <strong>Predictied Time:</strong>
+				  <strong>Predicted Time:</strong>
 				  hr:<%= @predictval[0] %> m:<%= @predictval[1] %> s:<%= @predictval[2] %> TotSec:<%= @predictval[3] %>
 				</p>
-				<div id="goalinfo" data-gthour="<%= @goal.gtHour %>" data-gtmin="<%= @goal.gtMin %>" data-gtsec="<%= @goal.gtSec %>" data-predtime="<%= @predictval[3] %>"></div>
-				<div id="chartdiv" style="height:400px;width:300px; "></div>
+				<div id="goalinfo" data-gthour="<%= @goal.gtHour %>" data-gtmin="<%= @goal.gtMin %>" data-gtsec="<%= @goal.gtSec %>" data-predtime="<%= @predictval[3] %>" data-predhash=<%= @predHash %>></div>
+				<div id="chartdiv" class="ready_for_graph" style="height:300px;width:800px; "></div>
 			</div>
 		</div>
 	</div>
