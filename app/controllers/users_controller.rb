@@ -61,8 +61,10 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-    flash[:badBoy] = "Bad bad bad.  That's not yours!"
-    redirect_to root_url if current_user != @user
+    if current_user != @user
+      flash[:badBoy] = "Bad bad bad.  That's not yours!"
+      redirect_to root_url 
+    end
   end
 
   private

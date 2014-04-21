@@ -18,3 +18,4 @@
 //= require Coolvetica_400.font
 //= require cufon-replace
 //= require_tree ./global
+//= require_tree ./secondary

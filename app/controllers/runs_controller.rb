@@ -64,8 +64,10 @@ class RunsController < ApplicationController
 
 	def correct_user
       @run = current_user.runs.find_by(id: params[:id])
-      flash[:badBoy] = "Bad bad bad.  That's not yours!"
-      redirect_to root_url if @run.nil?
+      if @run.nil?
+      	flash[:badBoy] = "Bad bad bad.  That's not yours!"
+      	redirect_to root_url if @run.nil?
+      end
     end
 
 	private
