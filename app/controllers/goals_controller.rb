@@ -88,7 +88,9 @@ class GoalsController < ApplicationController
 
 	def correct_user
       @goal = current_user.goals.find_by(id: params[:id])
-      flash[:badBoy] = "Bad bad bad.  That's not yours!"
-      redirect_to root_url if @goal.nil?
+      if @goal.nil?
+      	flash[:badBoy] = "Bad bad bad.  That's not yours!"
+      	redirect_to root_url
+      end
     end
 end

@@ -2,6 +2,7 @@ var geocoder; //= new google.maps.Geocoder(); //To use later
 var map; //Your map
 var poly;
 var markers = [];
+
 function initialize() {
   geocoder = new google.maps.Geocoder();
   var mapOptions = {
@@ -114,15 +115,15 @@ function getMapData() {
 	$('#newRoute').val(poly.getPath().getArray());
 }
 
-function loadScript() {
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
-      'callback=initialize';
-  document.body.appendChild(script);
-}
+// function loadScript() {
+//   var script = document.createElement('script');
+//   script.type = 'text/javascript';
+//   script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
+//       'callback=initialize';
+//   document.body.appendChild(script);
+// }
 
-$(document).ready(loadScript);
-$(document).on("page:load", loadScript);
+// $(document).ready(loadScript);
+// $(document).on("page:load", loadScript);
 
 

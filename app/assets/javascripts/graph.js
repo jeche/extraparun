@@ -1,14 +1,4 @@
-function loadScript(){
-	var script = document.createElement('script');
-  	script.type = 'text/javascript';
-  	script.src = '../assets/dist/jquery.jqplot.min.js';
-  	document.body.appendChild(script);
-
-  	var script2 = document.createElement('script');
-  	script2.type = 'text/javascript';
-  	script2.src = '../assets/dist/plugins/jqplot.dateAxisRenderer.min.js';
-  	document.body.appendChild(script2);
-
+function drawGraph() {
 	var gtHour = $('#goalinfo').data('gthour');
 	var gtMin = $('#goalinfo').data('gtmin');
 	var gtSec = $('#goalinfo').data('gtsec');
@@ -52,6 +42,5 @@ function loadScript(){
 	});
 	$('#chartdiv').attr("class") == "not_ready_for_graph"
 }
-$(document).ready(loadScript);
-$(document).on("page:load", loadScript);
+
 	
