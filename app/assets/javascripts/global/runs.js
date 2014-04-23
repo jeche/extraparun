@@ -39,9 +39,13 @@ function checkInput() {
     $('#sec').css("display", "block");
   }
   var distance = $('#distance').val();
-  if (!$.isNumeric(distance)) {
+  if (!$.isNumeric(distance) ) {
     flag = false;
     $('#distance_error').css("display", "block");
+  }
+  if (distance == 0) {
+    flag = false;
+    $('#distance_zero_error').css("display", "block");
   }
   var temp = $('#run_temp').val();
   if (!$.isNumeric(temp) && temp != "") {
@@ -63,7 +67,6 @@ function checkInput() {
     if (humidity == "") {
       $("#run_humidity").val(-1);
     }
-    getMapData();
     return true;
   }
 }
