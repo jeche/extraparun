@@ -9,3 +9,30 @@
 <script>
   initialize();
 </script>
+<script>
+  $('#remove').bind('click', function() { 
+    removeLine();
+  });
+
+ $('#zipcode').bind('input', function() { 
+    zipcode = $(this).val(); // get the current value of the input field.
+    if (zipcode.length == 5) {
+      geocoder.geocode( { 'address': zipcode}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          //Got result, center the map and put it out there
+          map.setCenter(results[0].geometry.location);
+        } else {
+          alert("Geocode was not successful for the following reason: " + status);
+        }
+      });
+    }
+  });
+
+ $('#Submit_form').click(function(e){
+    e.preventDefault();
+    var okay_to_submit = checkInput();
+    if (okay_to_submit) {
+      getMapData();
+    }
+  });
+</script>

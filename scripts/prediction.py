@@ -102,13 +102,14 @@ def mainNormalization(timeSecs, distanceMi, temp, route):
 	
 	averageWithExistingRunTimes(perMile)
 
-def mainExtrapolation(distanceMi, expTemp, route):
-	perMile = getUserAverageMiTime()
-	elevationTup = gatherElevationFromRoute(route)
-	perMile = extrapolateForElevationChange(elevationTup[0], elevationTup[1], perMile)
+def mainExtrapolation(expTemp, route, avgPerMile):
+	#perMile = getUserAverageMiTime()
+	#elevationTup = gatherElevationFromRoute(route)
+	perMile = extrapolateForElevationChange(route.elevationGain, route.elevationLoss, avgPerMile)
 	#Add more modules here(Those that deal with per mile times)
-	extrapTime = perMile * distanceMi
-	extrapTime = extrapolateForTemperatureChange(temp)
+	raise perMile.inspect
+	extrapTime = perMile * route.distance.to_f
+	#extrapTime = extrapolateForTemperatureChange(expTemp)  Add back in if we have temperature and date for a goal
 	#Add more modules here(Those that deal with whole times)
 
 	return extrapTime

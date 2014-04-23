@@ -23,8 +23,8 @@
 			  <td ><input type="checkbox" id='<%= "#{goal.id}" %>'></td>
 			  <td><%= goal.GoalName %></td>
 			  <td><%= "#{goal.gtHour} hr #{goal.gtMin} min #{goal.gtSec} sec" %></td>
-			  <td><%= goal.Route %></td>
-			  <td><%= "#{goal.distance} mi." %></td>
+			  <td><%= goal.routes.first.name %></td>
+			  <td><%= "#{goal.routes.first.distance} mi." %></td>
 			  <td><%= link_to 'View', goal_path(goal)%></td>
 			  <td><%= link_to 'Edit', edit_goal_path(goal) %></td>
 			</tr>

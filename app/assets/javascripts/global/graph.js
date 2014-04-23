@@ -44,7 +44,7 @@ function drawGraph() {
 }
 
 function checkInput() {
-  
+  return true;
   $('#hr').css("display", "none");
   $('#min').css("display", "none");
   $('#sec').css("display", "none");
@@ -97,7 +97,6 @@ function checkInput() {
     if (humidity == "") {
       $("#run_humidity").val(-1);
     }
-    getMapData();
     return true;
   }
 }

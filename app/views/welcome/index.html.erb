@@ -17,7 +17,7 @@
                 <p class="font-1">Goal <%= goal.id %></p>
 				<p class="font-2">Name: <%= goal.GoalName %></p>
                 <p class="font-2">Route: <%= goal.Route %></p>
-				<p class="font-2">Distance: <%= goal.distance %> mi.</p>
+				<p class="font-2">Distance: <%= goal.routes.first.distance %> mi.</p>
 				
                 <%= link_to 'View Goal', goal_path(goal) %> </div>
             </li>

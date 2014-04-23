@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140422181551) do
+ActiveRecord::Schema.define(version: 20140423051046) do
 
   create_table "courses", force: true do |t|
     t.integer  "runnable_id"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20140422181551) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.float    "distance"
     t.integer  "gtHour"
     t.integer  "gtMin"
     t.integer  "gtSec"
