@@ -13,44 +13,68 @@
         <strong><%= f.label :Name %>:</strong>
         <span class="input-field"><%= text_field "run", "name", "size" => 25, "required" => "required" %></span>
       </div>
+
       <div class="run-spec-section"> 
         <strong><%= f.label :Date %>:</strong>
         <span class="input-field"><input id="datepicker" type="text" name="run[date]" required="required"></span>
       </div>
+
       <div class="run-spec-section">
         <strong><%= f.label :Time %>:</strong><br/>
         <span class="input-label"><%= f.label :hours %></span>
         <span class="input-field"><%= text_field "run", "hr", "size" => 4, "required" => "required", "type" => "number"%></span>
         <span class="error-message" id="hr">Must be a number</span>
+
         <span class="input-label"><%= f.label :minutes %></span>
         <span class="input-field"><%= text_field "run", "min", "size" => 4, "required" => "required"%></span>
         <span class="error-message" id="min">Must be a number</span>
+
         <span class="input-label"><%= f.label :seconds %></span>
         <span class="input-field"><%= text_field "run", "sec", "size" => 4, "required" => "required" %></span>
         <span class="error-message" id="sec">Must be a number</span>
       </div>
+
       <div class="run-spec-section">
         <strong><%= f.label :Distance %>:</strong>
-        <span class="input-field"><%= text_field_tag "distance", nil, "size" => 10, "required" => "required" %></span><span>mi.</span>
+        <% if !@distance.nil? %>
+          <span class="input-field"><%= text_field_tag "distance", @distance, "size" => 10, "required" => "required" %></span><span>mi.</span>
+        <% else %>
+          <span class="input-field"><%= text_field_tag "distance", nil, "size" => 10, "required" => "required" %></span><span>mi.</span>
+        <% end %>
         <span class="error-message" id="distance_error">Must be a number</span>
+        <span class="error-message" id="distance_zero_error">Cannot be zero</span>
       </div>
+
       <div class="run-spec-section">
         <strong><%= f.label :'Weather Specs'%>:</strong><br/>
         <span class="input-label"><%= f.label :temperature %></span>
-        <span class="input-field"><%= text_field "run", "temp", "size" => 4 %></span><br/>
+        <% if !@run.temp.nil? && @run.temp != "-1" %>
+          <span class="input-field"><%= text_field "run", "temp", "size" => 4 %></span><br/>
+        <% else %>
+          <span class="input-field"><%= text_field "run", "temp", "size" => 4, "value" => "" %></span><br/>
+        <% end %>
         <span class="error-message" id="temp">Must be a number</span>
+
         <span class="input-label"><%= f.label :humidity %></span>
-        <span class="input-field"><%= text_field "run", "humidity", "size" => 6 %></span>
+        <% if !@run.humidity.nil? && @run.humidity != "-1" %>
+          <span class="input-field"><%= text_field "run", "humidity", "size" => 6 %></span><br/>
+        <% else %>
+          <span class="input-field"><%= text_field "run", "humidity", "size" => 6, "value" => "" %></span><br/>
+        <% end %>
         <span class="error-message" id="humidity">Must be a number</span>
+
+
         <div id="map-canvas"></div>
         <span class="input-label"><%= f.label :zipcode %></span>
         <button id="remove" type="button">Remove Last Point</button>
         <input id="zipcode" class="input_field" type="number"/>
         <%= hidden_field_tag(:newRoute) %>
+        <%= hidden_field_tag(:elevationLoss) %>
+        <%= hidden_field_tag(:elevationGain) %>
       </div>
 
     <p>
-      <%= f.submit class:'search_button', :onclick => "return checkInput();"%>
+      <%= f.submit id: 'submit_form', class:'search_button', :onclick => "return checkInput();"%>
     </p>
     <% end %>
 </div>

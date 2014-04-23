@@ -1,17 +1,17 @@
 <%= form_for @goal do |f| %>
   <div class="run-spec-section"> 
     <strong><%= f.label :'Goal Name:' %></strong>
-    <span class="input-field"><%= f.text_field :GoalName %></span>
+    <span class="input-field"><%= f.text_field :GoalName, "required" => "required" %></span>
   </div>
  
   <div class="run-spec-section"> 
     <strong><%= f.label :'Goal Time:' %></strong><br/>
     <span class="input-label"><%= f.label :'Hr:' %></span>
-	<span class="input-field"><%= f.text_field :gtHour %></span> 
+	<span class="input-field"><%= f.text_field :gtHour, "required" => "required" %></span> 
 	<span class="input-label"><%= f.label :'Min:' %></span>
-	<span class="input-field"><%= f.text_field :gtMin %></span>
+	<span class="input-field"><%= f.text_field :gtMin, "required" => "required" %></span>
 	<span class="input-label"><%= f.label :'Sec:' %></span>
-	<span class="input-field"><%= f.text_field :gtSec %></span>
+	<span class="input-field"><%= f.text_field :gtSec, "required" => "required" %></span>
   </div>
 
   <div class="run-spec-section"> 
@@ -21,7 +21,7 @@
   
   <div class="run-spec-section"> 
     <strong><%= f.label :distance %></strong>
-    <span class="input-field"><%= f.text_field :distance %></span>
+    <span class="input-field"><%= f.text_field :distance, "required" => "required"%></span>
     <div id="map-canvas"></div>
     <span class="input-label"><%= f.label :zipcode %></span>
     <button id="remove" type="button">Remove Last Point</button>

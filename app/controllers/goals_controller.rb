@@ -28,6 +28,8 @@ class GoalsController < ApplicationController
 			orderNum += 1
 		end
 		@route.numPoints = orderNum
+		@route.runnable_id = @run.id
+		@route.save
 		@goal.routes.push(@route)
   		redirect_to @goal
 	end
@@ -38,6 +40,7 @@ class GoalsController < ApplicationController
 	
 	def destroy
   		@goal = Goal.find(params[:id])
+  		@goal.routes.first.destroy
   		@goal.destroy
  
   		redirect_to goals_path

@@ -1,3 +1,4 @@
+var elevator;
 var geocoder; //= new google.maps.Geocoder(); //To use later
 var map; //Your map
 var poly;
@@ -19,6 +20,10 @@ function initialize() {
   };
   poly = new google.maps.Polyline(polyOptions);
   poly.setMap(map);
+
+  // Create an ElevationService
+  elevator = new google.maps.ElevationService();
+
   google.maps.event.addListener(map, 'click', addLatLng);
   if ($('#route').data('route') != "") {
     drawRoute();
@@ -89,41 +94,33 @@ function computeDistance() {
 }
 
 
-
-$(document).ready ( function(){
-    $('#remove').bind('click', function() { 
-      removeLine();
-    });
-
-   $('#zipcode').bind('input', function() { 
-    	zipcode = $(this).val(); // get the current value of the input field.
-    	if (zipcode.length == 5) {
-    		geocoder.geocode( { 'address': zipcode}, function(results, status) {
-      		if (status == google.maps.GeocoderStatus.OK) {
-		        //Got result, center the map and put it out there
-		        map.setCenter(results[0].geometry.location);
-		      } else {
-		        alert("Geocode was not successful for the following reason: " + status);
-		      }
-		    });
-    	}
-	});
-});
-
-
 function getMapData() {
-	$('#newRoute').val(poly.getPath().getArray());
+  $('#newRoute').val(poly.getPath().getArray());
+  var pathRequest = {
+    'path': poly.getPath().getArray(),
+    'samples': Math.round($('#distance').val()) * 3
+  }
+  elevator.getElevationAlongPath(pathRequest, processElevation);
 }
 
-// function loadScript() {
-//   var script = document.createElement('script');
-//   script.type = 'text/javascript';
-//   script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
-//       'callback=initialize';
-//   document.body.appendChild(script);
-// }
-
-// $(document).ready(loadScript);
-// $(document).on("page:load", loadScript);
-
-
+function processElevation(results, status) {
+  if (status == google.maps.ElevationStatus.OK) {
+    elevations = results;
+    elevationGain = 0;
+    elevationLoss = 0;
+    var elevationPath = [];
+    for (var i = 0; i < results.length - 1; i++) {
+      if (elevations[i].elevation > elevations[i + 1].elevation) {
+        elevationLoss += elevations[i].elevation - elevations[i + 1].elevation
+      }
+      else {
+        elevationGain += elevations[i + 1].elevation - elevations[i].elevation
+      }
+    }
+    $('#elevationLoss').val(elevationLoss);
+    $('#elevationGain').val(elevationGain);
+    console.log(elevationLoss);
+    console.log(elevationGain);
+    $('#new_run').submit();
+  }
+}
