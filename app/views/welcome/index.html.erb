@@ -1,6 +1,7 @@
 <% @prepage = "Extraparun" %>
 <% @page = "Home" %>
 <% @highlight = "Home" %>
+<%= stylesheet_link_tag "jquery.jqplot.css"%>
 
 <% if flash[:badBoy] %>
 	<div class="alert alert-danger"><%= flash[:badBoy] %></div>
@@ -9,10 +10,14 @@
 <section id="content">
 	<div class="container_12">
 		<div class="grid_12">
-        <div class="slider">
+		<% current_user.goals.each do |goal| %>
+		<div id="goalinfo" data-id="<%= goal.id %>" data-gthour="<%= goal.gtHour %>" data-gtmin="<%= goal.gtMin %>" data-gtsec="<%= goal.gtSec %>" data-predhash=<%= JSON.generate(goal.predictions) %>></div>
+				<div id="chartdiv<%= goal.id %> "class="ready_for_graph" style="height:300px;width:800px; "></div><% end %>
+		<div class="slider">
           <ul class="items">
 			<% current_user.goals.each do |goal| %>
-            <li ><span class="graph"><%= image_tag "graph.jpg"%></span>
+			
+            <li >
               <div class="banner">
                 <p class="font-1">Goal <%= goal.id %></p>
 				<p class="font-2">Name: <%= goal.GoalName %></p>
@@ -87,4 +92,5 @@
 
 <script>
 	initGoalsRotater();
+	drawGraph();
 </script>
