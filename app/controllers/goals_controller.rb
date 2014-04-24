@@ -81,16 +81,16 @@ class GoalsController < ApplicationController
 			time = ind_run.hr.to_i * 60 * 60
 			time += ind_run.min.to_i * 60
 			time += ind_run.sec.to_i
-			sum = mainNormalization(time, ind_run.routes.first.distance, ind_run.temp, ind_run.routes.first)
+			sum += mainNormalization(time, ind_run.routes.first.distance, ind_run.temp, ind_run.routes.first)
 			#sum += (time/dist)
 			count += 1
 		end
 		if count > 0
 			goal = Goal.find(params[:id])
 			avg = sum/count
-			pred = mainExtrapolation(0, goal.routes.first, avg)
+			pred = mainExtrapolation(0, goal.routes.first, avg).to_i
 			#pred = avg * goal.routes.first.distance.to_i
-			goal.predictions[Time.now.strftime("%Y-%m-%dT%H:%M")] = pred/3600
+			goal.predictions[Time.now.strftime("%Y-%m-%dT%H:%M")] = pred/3600.0
 			@predHash = JSON.generate(goal.predictions)
 			goal.save
 			@ret = [(pred/3600), (pred%3600)/60, (pred%3600)%60, pred]

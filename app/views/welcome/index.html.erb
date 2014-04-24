@@ -14,6 +14,7 @@
 		<div id="goalinfo" data-id="<%= goal.id %>" data-gthour="<%= goal.gtHour %>" data-gtmin="<%= goal.gtMin %>" data-gtsec="<%= goal.gtSec %>" data-predhash=<%= JSON.generate(goal.predictions) %>></div>
 				<div id="chartdiv<%= goal.id %> "class="ready_for_graph" style="height:300px;width:800px; "></div><% end %>
 		<div class="slider">
+        <div class="rounded slider">
           <ul class="items">
 			<% current_user.goals.each do |goal| %>
 			
@@ -39,7 +40,7 @@
       </div>
 		
 		<div class="grid_12 top-1">
-        <div class="box-shadow">
+        <div class="rounded box-shadow">
           <div class="wrap block-2">
             <div class="col-1">
               <h2 class="p3"><span class="color-1">Latest</span> runs</h2>

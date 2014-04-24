@@ -29,12 +29,6 @@ body {
 	margin:0 auto;
 	position:relative;
 }
-table {
-	border: 1px solid black;
-	width: 98%;
-	height: auto;
-	margin: 20px 5px 20px 0px;
-}
 
 .input_table {
 	border: none;
@@ -47,15 +41,11 @@ table {
 	padding-bottom: 15px;
 }
 
-th, td{
-	border: 1px solid black;
-}
+
 tr {
 	text-align: center;	
 }
-tbody tr td {
-	border-right: 1px black solid;
-}
+
 
 #front-page-table{
 	border: none;
@@ -69,9 +59,7 @@ tbody tr td {
 #select-col-head{
 	width: 50px;
 }
-.input-field{
-	border: 1px black solid;
-}
+
 .input-label{
 	margin-left: 15px;
 }
@@ -543,12 +531,10 @@ dl dd a:hover {
 	color:black;
 	padding:11px 9px 13px 5px;
 	outline: medium none;
-	width: 278px;
 	height:17px;
 	
 }
 .edit-form label {
-	display: block;
 	min-height: 25px;
 	padding: 10px 0px 0px 0px;
 	margin: 10px 5px 0px 0px;
@@ -569,4 +555,48 @@ dl dd a:hover {
 
 .error {
 	color: red;
+}
+
+.datagrid table { border-collapse: collapse; text-align: left; width: 100%; } 
+.datagrid {font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; }
+.datagrid table td, .datagrid table th { padding: 8px 5px; }
+.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #01A5CA), color-stop(1, #01A5CA) );background:-moz-linear-gradient( center top, #01A5CA 5%, #01A5CA 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#01A5CA', endColorstr='#01A5CA');background-color:#01A5CA; color:#FFFFFF; font-size: 15px; font-weight: bold; border-left: 2px solid #F4F4F4; } 
+.datagrid table thead th:first-child { border: none; }
+.datagrid table tbody td { color: #01A5CA; border-left: 2px solid #F4F4F4;font-size: 12px;font-weight: normal; }
+.datagrid table tbody {vertical-align: middle;}
+.alt td { background: #FAFAFA; color: #01A5CA; }
+.datagrid table tbody td:first-child { border-left: none; }
+.datagrid table tbody tr:last-child td { border-bottom: none; }
+
+.side_right{
+	float:right;
+}
+
+.rounded {
+	-webkit-border-radius: 10px; 
+	-moz-border-radius: 10px; 
+	border-radius: 10px;
+}
+
+.table_button {
+	background:#f4f4f4;
+	font-size:14px;
+	line-height:18px;
+	color:#01a5ca;
+	text-transform:uppercase;
+	display:inline-block;
+	padding: 2px 2px 2px 2px
+	
+}
+.table_button:hover {
+	background:#d3d1d1;
+	color:#333;
+}
+
+.large {
+	width: 278px;
+}
+
+.block {
+	display: block;
 }
