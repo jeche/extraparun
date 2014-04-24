@@ -2,7 +2,6 @@ function drawGraph() {
 	var gtHour = $('#goalinfo').data('gthour');
 	var gtMin = $('#goalinfo').data('gtmin');
 	var gtSec = $('#goalinfo').data('gtsec');
-	var predTime = $('#goalinfo').data('predtime');
 	var goalTime = (gtHour*3600) + (gtMin*60) + gtSec;
 	var predHash = $('#goalinfo').data('predhash');
 	var predArray = [];
