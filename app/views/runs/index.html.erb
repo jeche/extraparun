@@ -5,50 +5,55 @@
 <section id="content">
 <div class="container_12">
 <div class="grid_12 top-1">
-    <div class="block-1 box-shadow">
-	<a href="runs/new" class="search_button">Add a run</a>
-      <table>
-		<thead>
-			<th id="select-col-head"><strong>Select</strong></th>
-			<th><strong>Date</strong></th>
-			<th><strong>Name</strong></th>
-			<th><strong>Time</strong></th>
-			<th><strong>Distance</strong></th>
-			<th><strong>Temperature</strong></th>
-			<th><strong>Humidity</strong></th>
-			<th><strong>View</strong></th>
-			<th><strong>Edit</strong></th>
-		</thead>
-		<tbody>
-		<% current_user.runs.each do |run| %>
-		<tr >
-		  <td ><input type="checkbox" id='<%= "#{run.id}" %>'></td>
-		  <td ><%= run.date %></td>
-		  <td><%= run.name %></td>
-		  <td ><%= "#{run.hr} hr #{run.min} min #{run.sec} sec" %></td>
-		  <td><%= "#{run.routes.first.distance} mi."%></td>
-		  <% if run.temp != "-1" %>
-				<td ><%= "#{run.temp} F"%></td>
-		  <% else %>
-				<td >F</td>
-		  <% end %>
-		  <% if run.humidity != "-1" %>
-				<td ><%= "#{run.humidity} F"%></td>
-		  <% else %>
-				<td ></td>
-		  <% end %>
-		  <td><%= link_to 'View', run_path(run)%></td>
-		  <td><%= link_to 'Edit', edit_run_path(run) %></td>
-		</tr>
-		<!--<% run.routes.first.points.each do |point| %>
-			<p><%= point.lat %> <%= point.lon %></p>
-		<% end %>
-		<p>RAWR</p>-->
-		<% end %>
-		</tbody>
-	  </table>
-	  <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
-	  <a href="#" class="search_button" onClick="removeSelectedRuns();">Remove Selected</a>
+    <div class="rounded block-1 box-shadow">
+	<a href="runs/new" class="rounded search_button">Add a run</a>
+	<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+	<a href="#" class="rounded side_right search_button" onClick="removeSelectedRuns();">Remove Selected</a>
+		<div class="datagrid">
+	      <table>
+			<thead>
+				<th><strong>Select</strong></th>
+				<th><strong>Date</strong></th>
+				<th><strong>Name</strong></th>
+				<th><strong>Time</strong></th>
+				<th><strong>Distance</strong></th>
+				<th><strong>Temperature</strong></th>
+				<th><strong>Humidity</strong></th>
+				<th><strong>View</strong></th>
+				<th><strong>Edit</strong></th>
+			</thead>
+			<tbody>
+				<% count = 0 %>
+				<% current_user.runs.each do |run| %>
+					<% count += 1 %>
+					<% if count % 2 == 0 %>
+						<tr class="alt">
+					<% else %>
+						<tr >
+					<% end %>
+					  <td ><input type="checkbox" id='<%= "#{run.id}" %>'></td>
+					  <td ><%= run.date %></td>
+					  <td><%= run.name %></td>
+					  <td ><%= "#{run.hr} hr #{run.min} min #{run.sec} sec" %></td>
+					  <td><%= "#{run.routes.first.distance} mi."%></td>
+					  <% if run.temp != "-1" %>
+							<td ><%= "#{run.temp} F"%></td>
+					  <% else %>
+							<td >F</td>
+					  <% end %>
+					  <% if run.humidity != "-1" %>
+							<td ><%= "#{run.humidity} F"%></td>
+					  <% else %>
+							<td ></td>
+					  <% end %>
+					  <td><%= button_to 'View', run_path(run), :class => "rounded table_button", :method => :get %></td>
+					  <td><%= button_to 'Edit', edit_run_path(run), :class => "rounded table_button", :method => :get %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		  </table>
+		 </div>
+	  
 	  
     </div>
   </div>

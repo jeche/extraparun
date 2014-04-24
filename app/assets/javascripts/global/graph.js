@@ -22,7 +22,7 @@ function drawGraph() {
 	for (var i = 0; i < keys.length; i++) {
 		var time = keys[i].split("T");
 		predArray.push([time[0] + " " + time[1], predHash[keys[i]]])
-		goalArray.push([time[0] + " " + time[1], goalTime/3600]);
+		goalArray.push([time[0] + " " + time[1], goalTime/3600.0]);
 	}
 
 	if ($('#chartdiv').attr("class") != "ready_for_graph") {
