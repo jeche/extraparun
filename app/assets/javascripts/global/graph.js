@@ -7,6 +7,7 @@ function drawGraph() {
 	var predArray = [];
 	var goalArray = [];
 	var keys = [];
+	var id = $('#goalinfo').data('id');
 
 	for (var key in predHash) {
 		keys.push(key);
@@ -24,11 +25,11 @@ function drawGraph() {
 		goalArray.push([time[0] + " " + time[1], goalTime/3600.0]);
 	}
 
-	if ($('#chartdiv').attr("class") != "ready_for_graph") {
+	/*if ($('#chartdiv'+id).attr("class") != "ready_for_graph") {
 		graph.destroy();
-	}
+	}*/
 	console.log(predArray);
-	var graph = $.jqplot('chartdiv',  [ goalArray, predArray ], {
+	var graph = $.jqplot('chartdiv'.concat(id),  [ goalArray, predArray ], {
 		axes:{
 			xaxis:{
 				renderer:$.jqplot.DateAxisRenderer,
@@ -39,7 +40,7 @@ function drawGraph() {
 		},
     	series:[{lineWidth:4, markerOptions:{style:'square'}}]
 	});
-	$('#chartdiv').attr("class") == "not_ready_for_graph"
+	$('#chartdiv'+id).attr("class") == "not_ready_for_graph"
 }
 
 function checkInput() {
