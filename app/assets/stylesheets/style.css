@@ -377,7 +377,7 @@ ul.menu li a:hover, ul.menu li.current a {
 	margin-top:19px;
 }
 .search_button {
-	background:#f4f4f4;
+	background:#f4f4f4F;
 	font-size:14px;
 	line-height:18px;
 	color:#01a5ca;
@@ -385,6 +385,7 @@ ul.menu li a:hover, ul.menu li.current a {
 	display:inline-block;
 	padding:12px 28px 13px 28px;
 	margin:15px 0px 10px 0px;
+	border: none;
 }
 .search_button:hover {
 	background:#d3d1d1;
@@ -586,7 +587,8 @@ dl dd a:hover {
 	color:#01a5ca;
 	text-transform:uppercase;
 	display:inline-block;
-	padding: 2px 2px 2px 2px
+	padding: 2px 2px 2px 2px;
+	border: none;
 	
 }
 .table_button:hover {
