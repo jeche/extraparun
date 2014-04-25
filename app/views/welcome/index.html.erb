@@ -20,7 +20,7 @@
                 			<p class="font-1"><%= goal.GoalName %></p>
                 			<p class="font-2">Route: <%= goal.routes.first.name %></p>
 							<p class="font-2">Distance: <%= goal.routes.first.distance %> mi.</p>
-							<%= button_to 'View Goal', goal_path(goal), :class => "rounded", :method => :get %>
+							<%= button_to 'View Goal', goal_path(goal), :class => "search_button rounded", :method => :get %>
                 		</div>				
 		            </div>
 				<% end %>
