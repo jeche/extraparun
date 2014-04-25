@@ -1,42 +1,52 @@
-<%= form_for @goal do |f| %>
-  <div class="run-spec-section"> 
-    <strong><%= f.label :'Goal Name:' %></strong>
-    <span class="input-field"><%= f.text_field :GoalName, "required" => "required" %></span>
-  </div>
- 
-  <div class="run-spec-section"> 
-    <strong><%= f.label :'Goal Time:' %></strong><br/>
-    <span class="input-label"><%= f.label :'Hr:' %></span>
-	<span class="input-field"><%= f.text_field :gtHour, "required" => "required" %></span> 
-	<span class="input-label"><%= f.label :'Min:' %></span>
-	<span class="input-field"><%= f.text_field :gtMin, "required" => "required" %></span>
-	<span class="input-label"><%= f.label :'Sec:' %></span>
-	<span class="input-field"><%= f.text_field :gtSec, "required" => "required" %></span>
-  </div>
+<div class="rounded block-1 box-shadow"> 
+  <div class="edit-form">
+    <%= form_for @goal do |f| %>
+      <div class="field"> 
+        <strong><%= f.label :'Goal Name:' %></strong>
+        <span class="input-field"><%= f.text_field :GoalName, "required" => "required", :class => "large rounded block" %></span>
+      </div>
+     
+      <div class="field"> 
+        <strong><%= f.label :'Goal Time:' %></strong><br/>
+        <span class="input-label"><%= f.label :'Hr:' %></span>
+    	<span class="input-field"><%= f.text_field :gtHour, "size" => 4, "required" => "required", :class => "rounded" %></span> 
+    	<span class="input-label"><%= f.label :'Min:' %></span>
+    	<span class="input-field"><%= f.text_field :gtMin, "size" => 4, "required" => "required", :class => "rounded" %></span>
+    	<span class="input-label"><%= f.label :'Sec:' %></span>
+    	<span class="input-field"><%= f.text_field :gtSec, "size" => 4, "required" => "required", :class => "rounded" %></span>
+      </div>
 
-  <div class="run-spec-section"> 
-    <strong><%= f.label :Route %></strong>
-    <span class="input-field"><%= f.select(:Route, [["None", -1]] + @courses.collect {|p| [ p.name, p.id ] }) %></span>
-  </div>
-  
-  <div class="run-spec-section"> 
-    <strong><%= f.label :distance %></strong>
-    <% if !@distance.nil? %>
-      <span class="input-field"><%= text_field_tag "distance", @distance, "size" => 10, "required" => "required" %></span><span>mi.</span>
-    <% else %>
-      <span class="input-field"><%= text_field_tag "distance", nil, "size" => 10, "required" => "required" %></span><span>mi.</span>
-    <% end %>
-    <div id="map-canvas"></div>
-    <span class="input-label"><%= f.label :zipcode %></span>
-    <button id="remove" type="button">Remove Last Point</button>
-    <input id="zipcode" class="input_field" type="number"/>
-    <%= hidden_field_tag(:newRoute) %>
-    <%= hidden_field_tag(:elevationLoss) %>
-    <%= hidden_field_tag(:elevationGain) %>
-    <%= hidden_field_tag(:type, "goal") %>
-  </div>
- 
-  <p>
-    <%= f.submit id: 'Submit_form', class:'search_button', :onclick => "getMapData();"%>
-  </p>
-<% end %>
+      <div class="field"> 
+        <strong><%= f.label :Route %></strong>
+        <span class="custom-dropdown custom-dropdown--white custom-dropdown--large">
+          <select id="goal_Route" class="rounded custom-dropdown__select custom-dropdown__select--white" name="goal[Route]">
+            <option value="-1">None</option>
+            <% @courses.each do |course| %>
+              <option value=<%= course.id %>><%= course.name %></option>
+            <% end %>
+          </select>
+        </span>
+      </div>
+      
+      <div class="field"> 
+        <strong><%= f.label :distance %></strong>
+        <% if !@distance.nil? %>
+          <span class="input-field"><%= text_field_tag "distance", @distance, "size" => 10, "required" => "required", :class => "large rounded"%></span><span> mi</span>
+        <% else %>
+          <span class="input-field"><%= text_field_tag "distance", nil, "size" => 10, "required" => "required", :class => "large rounded" %></span><span> mi</span>
+        <% end %>
+        <div id="map-canvas" class="rounded map_div"></div>
+        <span class="input-label"><%= f.label :zipcode %></span>
+        <input id="zipcode" class="large rounded" type="number"/>
+        <button id="remove" type="button" class="rounded table_button">Remove Last Point</button>
+        <%= hidden_field_tag(:newRoute) %>
+        <%= hidden_field_tag(:elevationLoss) %>
+        <%= hidden_field_tag(:elevationGain) %>
+        <%= hidden_field_tag(:type, "goal") %>
+      </div>
+    </div>
+    <p>
+      <%= f.submit id: 'Submit_form', class:'search_button', :onclick => "getMapData();"%>
+    </p>
+  <% end %>
+</div>
