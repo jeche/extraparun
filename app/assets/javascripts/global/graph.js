@@ -1,19 +1,19 @@
-function drawGraph() {
-	var gtHour = $('#goalinfo').data('gthour');
-	var gtMin = $('#goalinfo').data('gtmin');
-	var gtSec = $('#goalinfo').data('gtsec');
+function drawGraph(id) {
+	var gtHour = $('#goalinfo' + id).data('gthour');
+	var gtMin = $('#goalinfo' + id).data('gtmin');
+	var gtSec = $('#goalinfo' + id).data('gtsec');
 	var goalTime = (gtHour*3600) + (gtMin*60) + gtSec;
-	var predHash = $('#goalinfo').data('predhash');
+	var predHash = $('#goalinfo' + id).data('predhash');
 	var predArray = [];
 	var goalArray = [];
 	var keys = [];
-	var id = $('#goalinfo').data('id');
 
 	for (var key in predHash) {
 		keys.push(key);
 	}
 
 	keys.sort();
+  console.log(keys);
 	// Gets the first time the user has listed and finds one day before that.
 	var startingTimeList = (keys[0].split("T"))[0].split("-");
 	var rightDate = parseInt(startingTimeList[2]) - 1;
