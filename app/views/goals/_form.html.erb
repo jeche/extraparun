@@ -18,17 +18,14 @@
 
       <div class="field"> 
         <strong><%= f.label :Route %></strong>
-        <span class="custom-dropdown custom-dropdown--large custom-dropdown--white">
-          <select class="custom-dropdown__select custom-dropdown__select--white">
-            <option>The Shawshank Redemption</option>
-            <option>The Godfather</option>
-            <option>Pulp Fiction</option>
-            <option>The Good, the Bad and the Ugly</option>
-            <option>12 Angry Men</option>
+        <span class="custom-dropdown custom-dropdown--white custom-dropdown--large">
+          <select id="goal_Route" class="rounded custom-dropdown__select custom-dropdown__select--white" name="goal[Route]">
+            <option value="-1">None</option>
+            <% @courses.each do |course| %>
+              <option value=<%= course.id %>><%= course.name %></option>
+            <% end %>
           </select>
         </span>
-
-        <span><%= f.select(:Route, [["None", -1]] + @courses.collect {|p| [ p.name, p.id ] }, {}, { :class => 'large rounded btn btn-lg dropdown-toggle' }) %></span>
       </div>
       
       <div class="field"> 
