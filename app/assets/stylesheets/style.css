@@ -532,6 +532,7 @@ dl dd a:hover {
 	padding:11px 9px 13px 5px;
 	outline: medium none;
 	height:17px;
+	margin-bottom: 10px;
 	
 }
 .edit-form label {
@@ -599,4 +600,8 @@ dl dd a:hover {
 
 .block {
 	display: block;
+}
+
+.map_div {
+	margin-bottom: 10px;
 }
