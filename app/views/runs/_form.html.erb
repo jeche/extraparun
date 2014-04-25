@@ -64,19 +64,19 @@
         <% end %>
         <span class="error-message" id="humidity">Must be a number</span>
 
-
+		<span class="input-label"><%= f.label :zipcode %></span>
+        <span><input id="zipcode" class="rounded" type="number"/></span>
+        <span><button id="remove" type="button" class="rounded search_button">Remove Point</button></span>
         <div id="map-canvas" class="rounded map_div"></div>
-        <span class="input-label"><%= f.label :zipcode %></span>
-        <input id="zipcode" class="rounded" type="number"/>
-
-        <button id="remove" type="button" class="rounded side_right table_button">Remove Point</button>
+        
+		
         <%= hidden_field_tag(:newRoute) %>
         <%= hidden_field_tag(:elevationLoss) %>
         <%= hidden_field_tag(:elevationGain) %>
       </div>
     </div>
     <p>
-      <%= f.submit id: 'submit_form', class:'rounded search_button', :onclick => "return checkInput();"%>
+      <div style="text-align: center;"><%= f.submit id: 'submit_form', class:'rounded search_button', :onclick => "return checkInput();"%></div>
     </p>
     <% end %>
 </div>
