@@ -34,14 +34,14 @@
 				  <strong>Predicted Time:</strong>
 				  hr:<%= @predictval[0] %> m:<%= @predictval[1] %> s:<%= @predictval[2] %> TotSec:<%= @predictval[3] %>
 				</p>
-				<div id="goalinfo" data-gthour="<%= @goal.gtHour %>" data-gtmin="<%= @goal.gtMin %>" data-gtsec="<%= @goal.gtSec %>" data-predtime="<%= @predictval[3] %>" data-predhash=<%= @predHash %>></div>
-				<div id="chartdiv" class="ready_for_graph" style="height:300px;width:800px; "></div>
+				<div id="goalinfo<%= @goal.id %>" data-gthour="<%= @goal.gtHour %>" data-gtmin="<%= @goal.gtMin %>" data-gtsec="<%= @goal.gtSec %>" data-predtime="<%= @predictval[3] %>" data-predhash=<%= @predHash %>></div>
+				<div id="chartdiv<%= @goal.id %>" class="ready_for_graph" style="height:300px;width:800px; "></div>
 			</div>
 		</div>
 	</div>
 	</div>
 </section>	
 <script>
-	drawGraph();
+	drawGraph(<%= @goal.id %>);
 </script>
 
