@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140417182634) do
+ActiveRecord::Schema.define(version: 20140423051046) do
+
+  create_table "courses", force: true do |t|
+    t.integer  "runnable_id"
+    t.integer  "route_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "runnable_type"
+  end
 
   create_table "goals", force: true do |t|
     t.string   "GoalName"
@@ -19,10 +27,10 @@ ActiveRecord::Schema.define(version: 20140417182634) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.float    "distance"
     t.integer  "gtHour"
     t.integer  "gtMin"
     t.integer  "gtSec"
+    t.string   "predictions"
   end
 
   add_index "goals", ["user_id"], name: "index_goals_on_user_id"
@@ -41,11 +49,12 @@ ActiveRecord::Schema.define(version: 20140417182634) do
   create_table "routes", force: true do |t|
     t.string   "distance"
     t.integer  "runnable_id"
-    t.string   "runnable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "numPoints"
     t.string   "name"
+    t.float    "elevation_gain"
+    t.float    "elevation_loss"
   end
 
   create_table "runs", force: true do |t|

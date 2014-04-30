@@ -1,6 +1,10 @@
 class GoalsController < ApplicationController
+	before_action :signed_in_user
+	before_action :correct_user, only: [:show, :edit, :destroy, :update]
+
 	def new
 		@goal = Goal.new
+		@courses = Route.where("name != ?", "'nil'")
 	end
 	
 	def index
@@ -9,21 +13,28 @@ class GoalsController < ApplicationController
 
 	def create
 		@goal = current_user.goals.new(goal_params)
+		@goal.predictions = Hash.new
   		@goal.save
-  		route_string =  params[:newRoute]
-		route_string = route_string.gsub(/[()]/, "")
-		lat_lon_list = route_string.split(",")
-		count = 0
-		orderNum = 0
-		@route = Route.create(:distance => params[:distance])
-		@route.save
-		while count < lat_lon_list.size
-			@route.points.create(:lat => lat_lon_list[count].to_f, :lon => lat_lon_list[count + 1].to_f, :orderNum => orderNum)
-			count += 2
-			orderNum += 1
+  		if @goal.Route != "-1"
+			@route = Route.find(@goal.Route)
+		else
+	  		route_string =  params[:newRoute]
+			route_string = route_string.gsub(/[()]/, "")
+			lat_lon_list = route_string.split(",")
+			count = 0
+			orderNum = 0
+			@route = Route.create(:distance => params[:distance], :elevation_gain => params[:elevationGain], :elevation_loss => params[:elevationLoss])
+			@route.save
+			while count < lat_lon_list.size
+				@route.points.create(:lat => lat_lon_list[count].to_f, :lon => lat_lon_list[count + 1].to_f, :orderNum => orderNum)
+				count += 2
+				orderNum += 1
+			end
+			@route.numPoints = orderNum
 		end
-		@route.numPoints = orderNum
-		@goal.route = @route
+		@route.runnable_id = @goal.id
+		@route.save
+		@goal.routes.push(@route)
   		redirect_to @goal
 	end
 	def show
@@ -33,6 +44,10 @@ class GoalsController < ApplicationController
 	
 	def destroy
   		@goal = Goal.find(params[:id])
+  		@route = @goal.routes.first
+  		if @route.name.nil?
+  			@goal.routes.first.destroy
+  		end
   		@goal.destroy
  
   		redirect_to goals_path
@@ -40,6 +55,7 @@ class GoalsController < ApplicationController
 	
 	def edit
   		@goal = Goal.find(params[:id])
+  		@distance = @goal.routes.first.distance
 	end
 	
 	def update
@@ -61,21 +77,76 @@ class GoalsController < ApplicationController
 		sum = 0
 		count = 0
 		for ind_run in current_user.runs
-			#raise ind_run.route.distance.inspect
-			dist = ind_run.route.distance.to_i
+			dist = ind_run.routes.first.distance.to_i
 			time = ind_run.hr.to_i * 60 * 60
 			time += ind_run.min.to_i * 60
 			time += ind_run.sec.to_i
-			sum += (time/dist)
+			sum += mainNormalization(time, ind_run.routes.first.distance, ind_run.temp, ind_run.routes.first)
+			#sum += (time/dist)
 			count += 1
 		end
 		if count > 0
+			goal = Goal.find(params[:id])
 			avg = sum/count
-			pred = avg * Goal.find(params[:id]).distance.to_i
+			pred = mainExtrapolation(0, goal.routes.first, avg).to_i
+			#pred = avg * goal.routes.first.distance.to_i
+			goal.predictions[Time.now.strftime("%Y-%m-%dT%H:%M")] = pred/3600.0
+			@predHash = JSON.generate(goal.predictions)
+			goal.save
 			@ret = [(pred/3600), (pred%3600)/60, (pred%3600)%60, pred]
 		else
-			raise "hello"
 			@ret = 0
-		end
+		end	
+	end
+
+	def correct_user
+      @goal = current_user.goals.find_by(id: params[:id])
+      if @goal.nil?
+      	flash[:badBoy] = "Bad bad bad.  That's not yours!"
+      	redirect_to root_url
+      end
+    end
+
+    	#Base method for normalization
+	def mainNormalization(timeSecs, distanceMi, temp, route)
+		stateTime = timeSecs; #running state of time as it goes through normalization  
+		#elevationTup = gatherElevationFromRoute(route)
+		#stateTime = normalizeForTemperature(stateTime, temp)
+		#Add more modules here(Those that deal with whole times)
+
+		perMile = stateTime/distanceMi.to_f
+		perMile = normalizeForElevationChange(route.elevation_gain, route.elevation_loss, perMile)
+		#Add more modules here(Those that deal with per mile times)
+		return perMile
+	end
+
+	def mainExtrapolation(expTemp, route, avgPerMile)
+		#perMile = getUserAverageMiTime()
+		#elevationTup = gatherElevationFromRoute(route)
+		perMile = extrapolateForElevationChange(route.elevation_gain, route.elevation_loss, avgPerMile)
+		#Add more modules here(Those that deal with per mile times)
+		extrapTime = perMile * route.distance.to_f
+		#extrapTime = extrapolateForTemperatureChange(expTemp)  Add back in if we have temperature and date for a goal
+		#Add more modules here(Those that deal with whole times)
+
+		return extrapTime
+	end
+
+	def normalizeForElevationChange(inclElev, desElev, timeSecs)
+		inclFactor = ((inclElev / 100.0)*6.6)/100.0 
+		descFactor = ((desElev / 100.0)*3.63)/100.0
+		addTime = inclFactor * timeSecs #add lost time back
+		decTime = descFactor * timeSecs # subtract gained time
+		normalizedTime = timeSecs+addTime-decTime
+		return normalizedTime
+	end
+
+	def extrapolateForElevationChange(inclElev, desElev, timeSecs)
+		inclFactor = ((inclElev / 100.0)*6.6)/100.0 
+		descFactor = ((desElev / 100.0)*3.63)/100.0
+		addTime = descFactor * timeSecs #add potential gained time
+		decTime = inclFactor * timeSecs # subtract time lost due to hills
+		extrapolatedTime = timeSecs+addTime-decTime
+		return extrapolatedTime
 	end
 end

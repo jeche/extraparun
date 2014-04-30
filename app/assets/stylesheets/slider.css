@@ -28,7 +28,7 @@
 	height:13px;
 	width:13px;
 	display:block;
-	background:url(../images/pagination.png) right 0 no-repeat;
+	background:url("pagination.png") right 0 no-repeat;
 }
 .pagination li.current a {
 	background-position:left 0;
@@ -41,7 +41,7 @@
 	position:absolute;
 	left:685px;
 	top:37px;
-	z-index:99;
+	z-index:1;
 	width:235px;
 }
 .banner p {
@@ -59,7 +59,7 @@
 .font-2 {
 	font-size:17px;
 	line-height:28px;
-	color:#949494;
+	color:#f4f4f4;
 	margin-top:19px;
 }
 .banner a {

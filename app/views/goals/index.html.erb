@@ -1,37 +1,46 @@
 <% @prepage = "My" %>
 <% @page = "Goals" %>
+<% @highlight = "Goal" %>
 
 <section id="content">
 	<div class="container_12">
 	<div class="grid_12 top-1">
-	    <div class="block-1 box-shadow">
-		<a href="goals/new" class="search_button">Add a goal</a>
-		<table>
-		<thead>
-			<th id="select-col-head"><strong>Select</strong></th>
-			<th><strong>Goal Name</strong></th>
-			<th><strong>Goal Time</strong></th>
-			<th><strong>Route</strong></th>
-			<th><strong>Distance</strong></th>
-			<th><strong>View</strong></th>
-			<th><strong>Edit</strong></th>
-		</thead>
-		<tbody>		  
-		  <% current_user.goals.each do |goal| %>
-			<tr>
-			  <td ><input type="checkbox" id='<%= "#{goal.id}" %>'></td>
-			  <td><%= goal.GoalName %></td>
-			  <td><%= "#{goal.gtHour} hr #{goal.gtMin} min #{goal.gtSec} sec" %></td>
-			  <td><%= goal.Route %></td>
-			  <td><%= "#{goal.distance} mi." %></td>
-			  <td><%= link_to 'View', goal_path(goal)%></td>
-			  <td><%= link_to 'Edit', edit_goal_path(goal) %></td>
-			</tr>
-		  <% end %>
-		  </tbody>
-		</table>
+	    <div class="rounded block-1 box-shadow">
+		<a href="goals/new" class="rounded search_button">Add a goal</a>
+		<a href="#" class="rounded side_right search_button" onClick="removeSelectedGoals();">Remove Selected</a>
+		<div class="datagrid">
+			<table>
+				<thead>
+					<th id="select-col-head"><strong>Select</strong></th>
+					<th><strong>Goal Name</strong></th>
+					<th><strong>Goal Time</strong></th>
+					<th><strong>Route</strong></th>
+					<th><strong>Distance</strong></th>
+					<th><strong>View</strong></th>
+					<th><strong>Edit</strong></th>
+				</thead>
+				<tbody>		  
+				<% count = 0 %>
+				<% current_user.goals.each do |goal| %>
+					<% count += 1 %>
+					<% if count % 2 == 0 %>
+						<tr class="alt">
+					<% else %>
+						<tr >
+					<% end %>
+					  <td ><input type="checkbox" id='<%= "#{goal.id}" %>'></td>
+					  <td><%= goal.GoalName %></td>
+					  <td><%= "#{goal.gtHour} hr #{goal.gtMin} min #{goal.gtSec} sec" %></td>
+					  <td><%= goal.routes.first.name %></td>
+					  <td><%= "#{goal.routes.first.distance} mi." %></td>
+					  <td><%= button_to 'View', goal_path(goal), :class => "rounded table_button", :method => :get %></td>
+					  <td><%= button_to 'Edit', edit_goal_path(goal), :class => "rounded table_button", :method => :get %></td>
+					</tr>
+				  <% end %>
+				  </tbody>
+			</table>
+		</div>
 		<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
-		<a href="#" class="search_button" onClick="removeSelectedGoals();">Remove Selected</a>
 		</div>
 	  </div>
 	</div>

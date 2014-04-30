@@ -14,4 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require a_cufon
+//= require Asap_400.font
+//= require Coolvetica_400.font
+//= require cufon-replace
 //= require_tree ./global
+//= require_tree ./secondary

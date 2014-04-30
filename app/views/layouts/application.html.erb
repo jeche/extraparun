@@ -2,14 +2,25 @@
 <html>
 <head>
   <title>Extraparun</title>
+ 
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <link rel="icon" href="/favicon.ico" type="image/ico" />
-	<link rel="shortcut icon" href="/favicon.ico" type="image/ico" />
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <%= favicon_link_tag %>
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbp2q3_GNy2kx1s6L4xofOvQXnp9vG9II&sensor=false">
+    </script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
   <script>
+   $(function() {
+      $( "#spinner" ).spinner();
+    });
+
+  </script>
+  <script>
+
     $(function() {
       $( "#datepicker" ).datepicker({
         changeMonth: true,
@@ -17,6 +28,7 @@
       });
     });
   </script>
+  <%= yield :head %>
   <%= csrf_meta_tags %>
 </head>
 <body>

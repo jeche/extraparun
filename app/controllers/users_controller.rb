@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:show, :edit, :destroy, :update]
 
   # GET /users
   # GET /users.json
@@ -27,9 +28,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
       if @user.save
         respond_to do |format|
-          format.html { redirect_to :root, notice: 'User was successfully updated.' }
+          format.html { redirect_to :root }
           format.json { head :no_content }
-          flash[:success] = "Welcome to the Sample App!"
         end
        else
         respond_to do |format|
@@ -41,20 +41,12 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
-  def update
-    respond_to do |format|
-      if @user.update(user_params)
-        respond_to do |format|
-          format.html { redirect_to @user, notice: 'User was successfully updated.' }
-          format.json { head :no_content }
-        end
-      else
-        respond_to do |format|
-          format.html { render action: 'edit' }
-          format.json { render json: @user.errors, status: :unprocessable_entity }
-        end
-      end
-    end
+  def update    
+	if @user.update(user_params)
+		redirect_to @user
+	else
+		render 'edit'
+	end
   end
 
   # DELETE /users/1
@@ -64,6 +56,13 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to users_url }
       format.json { head :no_content }
+    end
+  end
+
+  def correct_user
+    if current_user != @user
+      flash[:badBoy] = "Bad bad bad.  That's not yours!"
+      redirect_to root_url 
     end
   end
 
