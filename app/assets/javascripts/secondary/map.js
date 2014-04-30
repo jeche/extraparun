@@ -6,10 +6,23 @@ var markers = [];
 
 function initialize() {
   geocoder = new google.maps.Geocoder();
-  var mapOptions = {
-    center: new google.maps.LatLng(40, -100),
-    zoom: 1
-  };
+  if ($("#route").data('route') != "") {
+    console.log("here");
+    var routeString = $("#route").data('route');
+    var points = routeString[0].replace(/[()]/g,''); 
+    var pointsList = points.split(",");
+    var myLatlng = new google.maps.LatLng(parseFloat(pointsList[0]),parseFloat(pointsList[1]));
+    var mapOptions = {
+      center: myLatlng,
+      zoom: 10
+    }
+  }
+  else {
+    var mapOptions = {
+      center: new google.maps.LatLng(40, -100),
+      zoom: 1
+    };
+  }
   map = new google.maps.Map(document.getElementById("map-canvas"),
       mapOptions);
 
@@ -58,7 +71,7 @@ function drawRoute() {
       title: '#' + path.getLength(),
       map: map
    });
-
+    markers.push(marker);
   }
 }
 
@@ -104,12 +117,9 @@ function getMapData() {
     elevator.getElevationAlongPath(pathRequest, processElevation);
   }
   else {
-    if ($("#type").val() == "goal") {
-      $('#new_goal').submit();
-    }
-    else {
-      $('#new_run').submit();
-    }
+    var form = $('form').attr('id');
+    console.log(form);
+    $("#" + form).submit();
   }
 }
 
@@ -131,12 +141,9 @@ function processElevation(results, status) {
     $('#elevationGain').val(elevationGain);
     console.log(elevationLoss);
     console.log(elevationGain);
-    if ($("#type").val() == "goal") {
-      $('#new_goal').submit();
-    }
-    else {
-      $('#new_run').submit();
-    }
+    var form = $('form').attr('id');
+    console.log(form);
+    $("#" + form).submit();
   }
 }
 

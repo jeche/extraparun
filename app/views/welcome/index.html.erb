@@ -6,6 +6,13 @@
 <% if flash[:badBoy] %>
 	<div class="alert alert-danger"><%= flash[:badBoy] %></div>
 <% end %>
+<script>
+    $(function(){
+      $('#slider-id').liquidSlider({
+      	continuous:false
+      });
+    });
+</script>
 
 <section id="content">
 	<div class="container_12">
@@ -13,7 +20,6 @@
 			<div class="rounded liquid-slider" id="slider-id">
 				<% current_user.goals.each do |goal| %>	
 					<div>
-						
 	            		<div id="goalinfo<%= goal.id %>" data-gthour="<%= goal.gtHour %>" data-gtmin="<%= goal.gtMin %>" data-gtsec="<%= goal.gtSec %>" data-predhash=<%= JSON.generate(goal.predictions) %>></div>
 						<div id="chartdiv<%= goal.id %>"class="ready_for_graph" style="height:300px;width:623px; "></div>
 						<div class="banner">
@@ -80,8 +86,8 @@
 	</div>
 </section>
 
-
-<% current_user.goals.each do |goal| %>	            
-	<script>
+<script>
+	<% current_user.goals.each do |goal| %>	            
 		drawGraph(<%= goal.id %>);
-	</script><% end %>
+	<% end %>
+</script>
