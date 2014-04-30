@@ -13,3 +13,6 @@ function initGoalsRotater() {
 	banners:'fade'
 	});
 }
+
+var first_time = true;
+
