@@ -14,48 +14,47 @@ function removeSelectedRuns() {
 }
 
 function checkInput() {
-  
-  $('#hr').css("display", "none");
-  $('#min').css("display", "none");
-  $('#sec').css("display", "none");
+  $('#name').css("display", "none");
+  $('#time').css("display", "none");
   $('#distance_error').css("display", "none");
   $('#temp').css("display", "none");
   $('#humidity').css("display", "none");
 
   var flag = true;
+  var name = $('#run_name').val();
+  if (name == "") {
+    flag = false;
+    $('#name').css("display", "inline-block");
+  }
   var hr = $('#run_hr').val();
-  if (!$.isNumeric(hr)) {
-    flag = false;
-    $('#hr').css("display", "block");
-  }
   var min = $('#run_min').val();
-  if (!$.isNumeric(min)) {
-    flag = false;
-    $('#min').css("display", "block");
-  }
   var sec = $('#run_sec').val();
-  if (!$.isNumeric(sec)) {
-    flag = false;
-    $('#sec').css("display", "block");
+  if (!$.isNumeric(hr) || !$.isNumeric(min) || !$.isNumeric(sec)) {
+    if (!((hr == "" && min == "" && $.isNumeric(sec)) || (hr == "" && $.isNumeric(min) && sec == "") || 
+      ($.isNumeric(hr) && min == "" && sec == "") || (hr == "" && $.isNumeric(min) && $.isNumeric(sec)) || 
+      ($.isNumeric(hr) && $.isNumeric(min) && sec == "") || ($.isNumeric(hr) && min == "" && $.isNumeric(sec)))) {
+      flag = false;
+      $('#time').css("display", "inline-block");
+    }
   }
   var distance = $('#distance').val();
   if (!$.isNumeric(distance) ) {
     flag = false;
-    $('#distance_error').css("display", "block");
+    $('#distance_error').css("display", "inline-block");
   }
   if (distance == 0) {
     flag = false;
-    $('#distance_zero_error').css("display", "block");
+    $('#distance_zero_error').css("display", "inline-block");
   }
   var temp = $('#run_temp').val();
   if (!$.isNumeric(temp) && temp != "") {
     flag = false;
-    $('#temp').css("display", "block");
+    $('#temp').css("display", "inline-block");
   }
   var humidity = $('#run_humidity').val();
   if (!$.isNumeric(humidity) && humidity != "") {
     flag = false;
-    $('#humidity').css("display", "block");
+    $('#humidity').css("display", "inline-block");
   }
   if (!flag) {
     return false;

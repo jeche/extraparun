@@ -13,6 +13,7 @@
       <div class="field">  
         <strong><%= f.label :Name %></strong>
         <span><%= text_field "run", "name", "size" => 25, "required" => "required", :class => "large rounded block" %></span>
+        <span class="error-message" id="name">Required</span>
       </div>
 
       <div class="field"> 
@@ -24,15 +25,13 @@
         <strong><%= f.label :Time %></strong><br/>
         <span class="input-label"><%= f.label :hours %></span>
         <span><%= text_field "run", "hr", "size" => 4, "required" => "required", "type" => "number", :class => "rounded" %></span>
-        <span class="error-message" id="hr">Must be a number</span>
 
         <span class="input-label"><%= f.label :minutes %></span>
         <span><%= text_field "run", "min", "size" => 4, "required" => "required", :class => "rounded" %></span>
-        <span class="error-message" id="min">Must be a number</span>
 
         <span class="input-label"><%= f.label :seconds %></span>
         <span class="input-field"><%= text_field "run", "sec", "size" => 4, "required" => "required", :class => "rounded" %></span>
-        <span class="error-message" id="sec">Must be a number</span>
+        <span class="error-message" id="time">Must be a number</span>
       </div>
 
       <div class="field">
@@ -64,7 +63,7 @@
         <% end %>
         <span class="error-message" id="humidity">Must be a number</span>
 
-		<span class="input-label"><%= f.label :zipcode %></span>
+		    <span class="input-label"><%= f.label :zipcode %></span>
         <span><input id="zipcode" class="rounded" type="number"/></span>
         <span><button id="remove" type="button" class="rounded search_button">Remove Point</button></span>
         <div id="map-canvas" class="rounded map_div"></div>

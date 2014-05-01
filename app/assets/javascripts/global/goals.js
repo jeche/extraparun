@@ -12,3 +12,44 @@ function removeSelectedGoals() {
       	});
 	})
 }
+
+function checkInputGoals() {
+  $('#name').css("display", "none");
+  $('#time').css("display", "none");
+  $('#distance_error').css("display", "none");
+  $('#distance_zero_error').css("display", "none");
+
+  var flag = true;
+  var name = $('#goal_GoalName').val();
+  if (name == "") {
+    flag = false;
+    $('#name').css("display", "inline-block");
+  }
+  var hr = $('#goal_gtHour').val();
+  var min = $('#goal_gtMin').val();
+  var sec = $('#goal_gtSec').val();
+  if (!$.isNumeric(hr) || !$.isNumeric(min) || !$.isNumeric(sec)) {
+    if (!((hr == "" && min == "" && $.isNumeric(sec)) || (hr == "" && $.isNumeric(min) && sec == "") || 
+      ($.isNumeric(hr) && min == "" && sec == "") || (hr == "" && $.isNumeric(min) && $.isNumeric(sec)) || 
+      ($.isNumeric(hr) && $.isNumeric(min) && sec == "") || ($.isNumeric(hr) && min == "" && $.isNumeric(sec)))) {
+      flag = false;
+      $('#time').css("display", "inline-block");
+    }
+  }
+  
+  var distance = $('#distance').val();
+  if (!$.isNumeric(distance) ) {
+    flag = false;
+    $('#distance_error').css("display", "inline-block");
+  }
+  else if (distance == 0) {
+    flag = false;
+    $('#distance_zero_error').css("display", "inline-block");
+  }
+  if (!flag) {
+    return false;
+  }
+  else {
+    return true;
+  }
+}
