@@ -154,7 +154,7 @@ class GoalsController < ApplicationController
 		if !route.elevation_gain.nil?
 			perMile = extrapolateForElevationChange(route.elevation_gain, route.elevation_loss, avgPerMile)
 		else
-			perMile = avgPerMile  # IS THIS WHAT I WANT IT TO BE?
+			perMile = avgPerMile
 		end
 		#Add more modules here(Those that deal with per mile times)
 		extrapTime = perMile * route.distance.to_f
