@@ -31,7 +31,11 @@
 					  <td ><input type="checkbox" id='<%= "#{goal.id}" %>'></td>
 					  <td><%= goal.GoalName %></td>
 					  <td><%= "#{goal.gtHour} hr #{goal.gtMin} min #{goal.gtSec} sec" %></td>
-					  <td><%= goal.routes.first.name %></td>
+					  <% if goal.routes.first.name.nil? %>
+					  	<td>Custom Route</td>
+					  <% else %>
+					  	<td><%= goal.routes.first.name %></td>
+					  <% end %>
 					  <td><%= "#{goal.routes.first.distance} mi." %></td>
 					  <td><%= button_to 'View', goal_path(goal), :class => "rounded table_button", :method => :get %></td>
 					  <td><%= button_to 'Edit', edit_goal_path(goal), :class => "rounded table_button", :method => :get %></td>

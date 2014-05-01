@@ -72,8 +72,9 @@ tr {
 }
 .signout-link{
 	float: right;
-	padding: 15px 0px 0px 0px;
+	padding: 15px 0px 0px 15px;
 	margin-right: 30px;
+	margin-top: 20px;
 }
 .center{
 	text-align: center;
@@ -378,16 +379,25 @@ ul.menu li a:hover, ul.menu li.current a {
 	margin-top:19px;
 }
 .search_button {
-	background:#f4f4f4F;
+	background:#f4f4f4;
 	font-size:14px;
 	line-height:18px;
-	color:#01a5ca;
+	color:#01a5ca !important;
 	text-transform:uppercase;
 	display:inline-block;
 	padding:12px 28px 13px 28px;
 	margin:15px 0px 10px 0px;
 	border: none;
 }
+
+.small {
+	width: 100px;
+}
+
+.darker {
+	background: #dbdbdb;
+}
+
 .search_button:hover {
 	background:#d3d1d1;
 	color:#333;
@@ -733,3 +743,13 @@ dl dd a:hover {
 	color: #01a5ca;
 	margin-left: 20px;
 }
+
+[required] {
+    color:red;
+    box-shadow: none;
+}
+
+.space {
+	padding-right: 40px;
+}
+

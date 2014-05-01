@@ -5,7 +5,9 @@ gem 'rails', '4.0.3'
 gem 'rails_12factor'
 # Use sqlite3 as the database for Active Record
 group :development, :test do
-  gem 'sqlite3'
+  gem 'sqlite3', '1.3.8'
+  gem 'rspec-rails'
+  gem 'capybara'
 end
 group :production, :staging do
   gem 'pg'

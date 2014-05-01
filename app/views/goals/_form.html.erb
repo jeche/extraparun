@@ -2,18 +2,22 @@
   <div class="edit-form">
     <%= form_for @goal do |f| %>
       <div class="field"> 
-        <strong><%= f.label :'Goal Name:' %></strong>
-        <span class="input-field"><%= f.text_field :GoalName, "required" => "required", :class => "large rounded block" %></span>
+        <strong><%= f.label :'Goal Name:' %></strong><br>
+        <span class="input-field"><%= f.text_field :GoalName,"required" => "required", :class => "large rounded" %></span>
+        <span class="error-message" id="name">Required</span>
       </div>
      
       <div class="field"> 
         <strong><%= f.label :'Goal Time:' %></strong><br/>
         <span class="input-label"><%= f.label :'Hr:' %></span>
-    	<span class="input-field"><%= f.text_field :gtHour, "size" => 4, "required" => "required", :class => "rounded" %></span> 
-    	<span class="input-label"><%= f.label :'Min:' %></span>
-    	<span class="input-field"><%= f.text_field :gtMin, "size" => 4, "required" => "required", :class => "rounded" %></span>
-    	<span class="input-label"><%= f.label :'Sec:' %></span>
-    	<span class="input-field"><%= f.text_field :gtSec, "size" => 4, "required" => "required", :class => "rounded" %></span>
+      	<span class="input-field"><%= f.text_field :gtHour, "size" => 4, "required" => "required", :class => "rounded" %></span> 
+
+      	<span class="input-label"><%= f.label :'Min:' %></span>
+      	<span class="input-field"><%= f.text_field :gtMin, "size" => 4, "required" => "required", :class => "rounded" %></span>
+
+      	<span class="input-label"><%= f.label :'Sec:' %></span>
+      	<span class="input-field"><%= f.text_field :gtSec, "size" => 4, "required" => "required", :class => "rounded" %></span>
+        <span class="error-message" id="time">Must be a number</span>
       </div>
 
       <div class="field"> 
@@ -35,18 +39,20 @@
         <% else %>
           <span class="input-field"><%= text_field_tag "distance", nil, "size" => 10, "required" => "required", :class => "large rounded" %></span><span> mi</span>
         <% end %>
-        <div id="map-canvas" class="rounded map_div"></div>
+        <span class="error-message" id="distance_error">Must be a number</span>
+        <span class="error-message" id="distance_zero_error">Cannot be zero</span>
+        <br>
         <span class="input-label"><%= f.label :zipcode %></span>
-        <input id="zipcode" class="large rounded" type="number"/>
-        <button id="remove" type="button" class="rounded table_button">Remove Last Point</button>
+        <input id="zipcode" class="rounded" type="number"/>
+        <button id="remove" type="button" class="rounded search_button">Remove Last Point</button>
+        <div id="map-canvas" class="rounded map_div"></div>
         <%= hidden_field_tag(:newRoute) %>
         <%= hidden_field_tag(:elevationLoss) %>
         <%= hidden_field_tag(:elevationGain) %>
-        <%= hidden_field_tag(:type, "goal") %>
       </div>
     </div>
     <p>
-      <%= f.submit id: 'Submit_form', class:'search_button', :onclick => "getMapData();"%>
+      <%= f.submit id: 'Submit_form', class:'rounded search_button', :onclick => "return checkInputGoals();"%>
     </p>
   <% end %>
 </div>
