@@ -22,7 +22,11 @@
 
 				<p>
 				  <strong>Route:</strong>
-				  <%= @goal.routes.first.name %>
+				  <% if @goal.routes.first.name.nil? %>
+				  	Custom Route
+				  <% else %>
+				  	<%= @goal.routes.first.name %>
+				  <% end %>
 				</p>
 
 				<p>
@@ -32,7 +36,7 @@
 
 				<p>
 				  <strong>Predicted Time:</strong>
-				  hr:<%= @predictval[0] %> m:<%= @predictval[1] %> s:<%= @predictval[2] %> TotSec:<%= @predictval[3] %>
+				  hr:<%= @predictval[0] %> m:<%= @predictval[1] %> s:<%= @predictval[2] %> 
 				</p>
 				<div id="goalinfo<%= @goal.id %>" data-gthour="<%= @goal.gtHour %>" data-gtmin="<%= @goal.gtMin %>" data-gtsec="<%= @goal.gtSec %>" data-predtime="<%= @predictval[3] %>" data-predhash=<%= @predHash %>></div>
 				<div id="chartdiv<%= @goal.id %>" class="ready_for_graph" style="height:300px;width:800px; "></div>

@@ -55,12 +55,40 @@ class GoalsController < ApplicationController
 	
 	def edit
   		@goal = Goal.find(params[:id])
+  		@points = Array.new
+  		count = 0 
+  		while count < @goal.routes.first.numPoints
+  			point = Point.find_by route_id: @goal.routes.first.id, orderNum: count
+  			@points.push('(' + point.lat.to_s + ', ' + point.lon.to_s + ')')
+  			count += 1
+  		end
   		@distance = @goal.routes.first.distance
+  		@courses = Route.where("name != ?", "'nil'")
 	end
 	
 	def update
   		@goal = Goal.find(params[:id])
- 
+  		@goal.predictions = Hash.new
+ 		route_string =  params[:newRoute]
+		route_string = route_string.gsub(/[()]/, "")
+		lat_lon_list = route_string.split(",")
+		count = 0
+		orderNum = 0
+		@route = Route.create(:distance => params[:distance], :elevation_gain => params[:elevationGain], :elevation_loss => params[:elevationLoss])
+		@route.save
+		while count < lat_lon_list.size
+			@route.points.create(:lat => lat_lon_list[count].to_f, :lon => lat_lon_list[count + 1].to_f, :orderNum => orderNum)
+			count += 2
+			orderNum += 1
+		end
+		@route.numPoints = orderNum
+		@route.runnable_id = @goal.id
+		@route.save
+		if !@goal.routes.first.nil?
+			oldRoute = @goal.routes.shift
+			oldRoute.destroy
+		end
+		@goal.routes.push(@route)
   		if @goal.update(params[:goal].permit(:GoalName, :gtHour, :gtMin, :gtSec, :Route, :distance))
     		redirect_to @goal
   		else
@@ -123,7 +151,11 @@ class GoalsController < ApplicationController
 	def mainExtrapolation(expTemp, route, avgPerMile)
 		#perMile = getUserAverageMiTime()
 		#elevationTup = gatherElevationFromRoute(route)
-		perMile = extrapolateForElevationChange(route.elevation_gain, route.elevation_loss, avgPerMile)
+		if !route.elevation_gain.nil?
+			perMile = extrapolateForElevationChange(route.elevation_gain, route.elevation_loss, avgPerMile)
+		else
+			perMile = avgPerMile  # IS THIS WHAT I WANT IT TO BE?
+		end
 		#Add more modules here(Those that deal with per mile times)
 		extrapTime = perMile * route.distance.to_f
 		#extrapTime = extrapolateForTemperatureChange(expTemp)  Add back in if we have temperature and date for a goal

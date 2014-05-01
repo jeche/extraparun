@@ -733,3 +733,8 @@ dl dd a:hover {
 	color: #01a5ca;
 	margin-left: 20px;
 }
+
+[required] {
+    color:red;
+    box-shadow: none;
+}
