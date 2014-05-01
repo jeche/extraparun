@@ -42,18 +42,18 @@
 			  <div style="font-style: italic;">You can view separate runs by clicking on their date/name:</div>
               <table id="front-page-table">
 				<thead>
-					<th><strong>Date</strong></th>
-					<th><strong>Name</strong></th>
-					<th><strong>Time</strong></th>
-					<th><strong>Distance</strong></th>
+					<th class="space"><strong>Date</strong></th>
+					<th class="space"><strong>Name</strong></th>
+					<th class="space"><strong>Time</strong></th>
+					<th class="space"><strong>Distance</strong></th>
 				</thead>
 				<tbody>
 				<% current_user.runs.sort {|a,b| b.date <=> a.date }.each do |run| %>
 				<tr >
-				  <td ><%= link_to run.date, run_path(run) %></td>
-				  <td><%= link_to run.name, run_path(run) %></td>
-				  <td ><%= "#{run.hr} hr #{run.min} min #{run.sec} sec" %></td>
-				  <td><%= "#{run.routes.first.distance} mi."%></td>
+				  <td class="space"><%= link_to run.date, run_path(run) %></td>
+				  <td class="space"><%= link_to run.name, run_path(run) %></td>
+				  <td class="space"><%= "#{run.hr} hr #{run.min} min #{run.sec} sec" %></td>
+				  <td class="space"><%= "#{run.routes.first.distance} mi."%></td>
 				  </tr>
 				
 				<% end %>

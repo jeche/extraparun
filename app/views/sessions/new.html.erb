@@ -14,29 +14,29 @@
 <!--==============================content================================-->
 <section id="content">
     <div class="container_12">
-	<div class="grid_12 top-1">
-	<div class="center"><strong>Please sign in:</strong></div>
-        <div id="signin-form">
-			<% flash.each do |key, value| %>
-				<div class="flash <%= key %> error"><%= value %></div>
-			<% end %>
-			<%= form_for(:session, url: sessions_path) do |f| %>
-				<div>
-				  <%= f.label :email %>
-				  <%= f.text_field :email %>
-				</div>
-				<div>
-				  <%= f.label :password %>
-				  <%= f.password_field :password %>
-				</div>
-		</div>
-			<div class="center">
-				<%= f.submit "Sign in", class: "search_button" %>
+		<div class="grid_12 top-1">
+			<div class="center"><strong>Please sign in:</strong></div>
+	        <div id="signin-form">
+				<% flash.each do |key, value| %>
+					<div class="flash <%= key %> error"><%= value %></div>
+				<% end %>
+
+				<%= form_for(:session, url: sessions_path) do |f| %>
+					<div>
+					  <%= f.label :email %>
+					  <%= f.text_field :email, class: "rounded" %>
+					</div>
+					<div>
+					  <%= f.label :password %>
+					  <%= f.password_field :password, class: "rounded" %>
+					</div>
 			</div>
-			
-			<% end %>
-		<div class="center">New user? <%= link_to "Sign up now!", signup_path, :class=>"link"%></div>		
-	</div>
+					<div class="center">
+						<%= f.submit "Sign in", class: "rounded darker search_button" %>
+					</div>
+				<% end %>
+			<div class="center">New user? <%= link_to "Sign up now!", signup_path, :class=>"link"%></div>		
+		</div>
 	</div>
 </section>
 <div class="clear"></div>

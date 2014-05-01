@@ -1,3 +1,4 @@
+<div class="rounded block-1 box-shadow"> 
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -13,25 +14,26 @@
 
   <div class="edit-form">
   <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <strong><%= f.label :name %></strong>
+    <%= f.text_field :name, :class => "rounded"%>
   </div>
   <div class="field">
-   <%= f.label :email %>
-    <%= f.text_field :email %>
+    <strong><%= f.label :email %></strong>
+    <%= f.text_field :email, :class => "rounded"%>
   </div>
   <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+    <strong><%= f.label :password %></strong>
+    <%= f.password_field :password, :class => "rounded"%>
   </div>
   <div class="field">
-    <%= f.label :password_confirmation, "Confirmation" %>
-    <%= f.password_field :password_confirmation %>
+    <strong><%= f.label :password_confirmation, "Confirmation" %></strong>
+    <%= f.password_field :password_confirmation, :class => "rounded"%>
   </div>
   </div>
   <div class="actions indent">
-    <span><%= f.submit class:'search_button'%></span>
-	<span><%= link_to 'Cancel', @user, class:"search_button" %></span>
+    <span><%= f.submit class:'rounded search_button'%></span>
+	<span><%= link_to 'Cancel', "/signinpage", class:"rounded search_button" %></span>
   </div>
   
 <% end %>
+</div>
