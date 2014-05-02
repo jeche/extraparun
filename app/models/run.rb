@@ -6,6 +6,6 @@ class Run < ActiveRecord::Base
 	validates_numericality_of   :hr, :only_integer => true
 	validates_numericality_of   :min, :only_integer => true
 	validates_numericality_of   :sec, :only_integer => true
-	validates_numericality_of   :temp
-	validates_numericality_of   :humidity
+	validates_numericality_of   :temp, :allow_nil => true
+	validates_numericality_of   :humidity, :allow_nil => true
 end

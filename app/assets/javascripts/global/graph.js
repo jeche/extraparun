@@ -40,7 +40,7 @@ function drawGraph(id) {
 	/*if ($('#chartdiv'+id).attr("class") != "ready_for_graph") {
 		graph.destroy();
 	}*/
-
+  console.log(predArray);
 	var graph = $.jqplot('chartdiv'.concat(id),  [ goalArray, predArray ], {
 		axes:{
 			xaxis:{

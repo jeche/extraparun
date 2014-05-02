@@ -102,7 +102,7 @@ class GoalsController < ApplicationController
 				@predictval = predict(ind_run.date, @goal.id)
 			end
 		end
-  		if @goal.update(params[:goal].permit(:GoalName, :gtHour, :gtMin, :gtSec, :Route, :distance))
+  		if @goal.update(params[:goal].permit(:GoalName, :gtHour, :gtMin, :gtSec, :Route))
     		redirect_to @goal
   		else
     		render 'edit'
@@ -111,7 +111,7 @@ class GoalsController < ApplicationController
 	
 	private
 	def goal_params
-		params.require(:goal).permit(:GoalName, :gtHour, :gtMin, :gtSec, :Route, :distance)
+		params.require(:goal).permit(:GoalName, :gtHour, :gtMin, :gtSec, :Route)
 	end
 
 	
