@@ -29,6 +29,11 @@ class RunsController < ApplicationController
 		@route.runnable_id = @run.id
 		@route.save
 		@run.routes.push(@route)
+		if !current_user.goals.nil?
+			for goal in current_user.goals
+				predict(@run.date, goal.id)
+			end
+		end
 		redirect_to @run
 	end
 
@@ -40,7 +45,6 @@ class RunsController < ApplicationController
   		@run = Run.find(params[:id])
   		@run.routes.first.destroy
   		@run.destroy
- 
   		redirect_to runs_path
 	end
 
@@ -78,6 +82,11 @@ class RunsController < ApplicationController
 			oldRoute.destroy
 		end
 		@run.routes.push(@route)
+		if !current_user.goals.nil?
+			for goal in current_user.goals
+				predict(@run.date, goal.id)
+			end
+		end
   		if @run.update(params[:run].permit(:hr, :min, :sec, :temp, :humidity, :name, :dist, :date))
     		redirect_to @run
   		else

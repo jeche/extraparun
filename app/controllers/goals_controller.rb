@@ -35,11 +35,19 @@ class GoalsController < ApplicationController
 		@route.runnable_id = @goal.id
 		@route.save
 		@goal.routes.push(@route)
+		if !current_user.runs.nil?
+			for ind_run in current_user.runs
+				@predictval = predict(ind_run.date, @goal.id)
+			end
+		end
   		redirect_to @goal
 	end
 	def show
   		@goal = Goal.find(params[:id])
-  		@predictval = predict
+  		last_key = @goal.predictions.keys.sort.last
+  		value = (@goal.predictions[last_key] * 3600).to_i
+  		@predictval = [(value/3600), (value%3600)/60, (value%3600)%60, value]
+  		@predHash = JSON.generate(@goal.predictions)
 	end
 	
 	def destroy
@@ -89,6 +97,11 @@ class GoalsController < ApplicationController
 			oldRoute.destroy
 		end
 		@goal.routes.push(@route)
+		if !current_user.runs.nil?
+			for ind_run in current_user.runs
+				@predictval = predict(ind_run.date, @goal.id)
+			end
+		end
   		if @goal.update(params[:goal].permit(:GoalName, :gtHour, :gtMin, :gtSec, :Route, :distance))
     		redirect_to @goal
   		else
@@ -101,31 +114,7 @@ class GoalsController < ApplicationController
 		params.require(:goal).permit(:GoalName, :gtHour, :gtMin, :gtSec, :Route, :distance)
 	end
 
-	def predict
-		sum = 0
-		count = 0
-		for ind_run in current_user.runs
-			dist = ind_run.routes.first.distance.to_i
-			time = ind_run.hr.to_i * 60 * 60
-			time += ind_run.min.to_i * 60
-			time += ind_run.sec.to_i
-			sum += mainNormalization(time, ind_run.routes.first.distance, ind_run.temp, ind_run.routes.first)
-			#sum += (time/dist)
-			count += 1
-		end
-		if count > 0
-			goal = Goal.find(params[:id])
-			avg = sum/count
-			pred = mainExtrapolation(0, goal.routes.first, avg).to_i
-			#pred = avg * goal.routes.first.distance.to_i
-			goal.predictions[Time.now.strftime("%Y-%m-%dT%H:%M")] = pred/3600.0
-			@predHash = JSON.generate(goal.predictions)
-			goal.save
-			@ret = [(pred/3600), (pred%3600)/60, (pred%3600)%60, pred]
-		else
-			@ret = 0
-		end	
-	end
+	
 
 	def correct_user
       @goal = current_user.goals.find_by(id: params[:id])
@@ -135,50 +124,5 @@ class GoalsController < ApplicationController
       end
     end
 
-    	#Base method for normalization
-	def mainNormalization(timeSecs, distanceMi, temp, route)
-		stateTime = timeSecs; #running state of time as it goes through normalization  
-		#elevationTup = gatherElevationFromRoute(route)
-		#stateTime = normalizeForTemperature(stateTime, temp)
-		#Add more modules here(Those that deal with whole times)
-
-		perMile = stateTime/distanceMi.to_f
-		perMile = normalizeForElevationChange(route.elevation_gain, route.elevation_loss, perMile)
-		#Add more modules here(Those that deal with per mile times)
-		return perMile
-	end
-
-	def mainExtrapolation(expTemp, route, avgPerMile)
-		#perMile = getUserAverageMiTime()
-		#elevationTup = gatherElevationFromRoute(route)
-		if !route.elevation_gain.nil?
-			perMile = extrapolateForElevationChange(route.elevation_gain, route.elevation_loss, avgPerMile)
-		else
-			perMile = avgPerMile
-		end
-		#Add more modules here(Those that deal with per mile times)
-		extrapTime = perMile * route.distance.to_f
-		#extrapTime = extrapolateForTemperatureChange(expTemp)  Add back in if we have temperature and date for a goal
-		#Add more modules here(Those that deal with whole times)
-
-		return extrapTime
-	end
-
-	def normalizeForElevationChange(inclElev, desElev, timeSecs)
-		inclFactor = ((inclElev / 100.0)*6.6)/100.0 
-		descFactor = ((desElev / 100.0)*3.63)/100.0
-		addTime = inclFactor * timeSecs #add lost time back
-		decTime = descFactor * timeSecs # subtract gained time
-		normalizedTime = timeSecs+addTime-decTime
-		return normalizedTime
-	end
-
-	def extrapolateForElevationChange(inclElev, desElev, timeSecs)
-		inclFactor = ((inclElev / 100.0)*6.6)/100.0 
-		descFactor = ((desElev / 100.0)*3.63)/100.0
-		addTime = descFactor * timeSecs #add potential gained time
-		decTime = inclFactor * timeSecs # subtract time lost due to hills
-		extrapolatedTime = timeSecs+addTime-decTime
-		return extrapolatedTime
-	end
+    
 end
