@@ -44,9 +44,13 @@ class GoalsController < ApplicationController
 	end
 	def show
   		@goal = Goal.find(params[:id])
-  		last_key = @goal.predictions.keys.sort.last
-  		value = (@goal.predictions[last_key] * 3600).to_i
-  		@predictval = [(value/3600), (value%3600)/60, (value%3600)%60, value]
+  		if !@goal.predictions.empty?
+  			last_key = @goal.predictions.keys.sort.last
+  			value = (@goal.predictions[last_key] * 3600).to_i
+  			@predictval = [(value/3600), (value%3600)/60, (value%3600)%60, value]
+  		else
+  			@predictval = [0, 0, 0, 0]
+  		end
   		@predHash = JSON.generate(@goal.predictions)
 	end
 	

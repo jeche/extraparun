@@ -37,10 +37,6 @@ function drawGraph(id) {
 		goalArray.push([time[0] + "-" + time[1] + "-" + time[2], goalTime/3600.0]);
 	}
 
-	/*if ($('#chartdiv'+id).attr("class") != "ready_for_graph") {
-		graph.destroy();
-	}*/
-  console.log(predArray);
 	var graph = $.jqplot('chartdiv'.concat(id),  [ goalArray, predArray ], {
 		axes:{
 			xaxis:{

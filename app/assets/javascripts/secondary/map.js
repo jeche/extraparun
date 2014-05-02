@@ -7,7 +7,6 @@ var markers = [];
 function initialize() {
   geocoder = new google.maps.Geocoder();
   if ($("#route").data('route') != "") {
-    console.log("here");
     var routeString = $("#route").data('route');
     var points = routeString[0].replace(/[()]/g,''); 
     var pointsList = points.split(",");
@@ -118,7 +117,6 @@ function getMapData() {
   }
   else {
     var form = $('form').attr('id');
-    console.log(form);
     $("#" + form).submit();
   }
 }
@@ -139,10 +137,7 @@ function processElevation(results, status) {
     }
     $('#elevationLoss').val(elevationLoss);
     $('#elevationGain').val(elevationGain);
-    console.log(elevationLoss);
-    console.log(elevationGain);
     var form = $('form').attr('id');
-    console.log(form);
     $("#" + form).submit();
   }
 }

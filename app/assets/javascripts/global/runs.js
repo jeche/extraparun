@@ -14,7 +14,6 @@ function removeSelectedRuns() {
 }
 
 function checkInput() {
-  console.log("here i am i am working")
   $('#name').css("display", "none");
   $('#time').css("display", "none");
   $('#distance_error').css("display", "none");
@@ -58,7 +57,6 @@ function checkInput() {
     $('#humidity').css("display", "inline-block");
   }
   if (!flag) {
-    console.log("Why am I here?");
     return false;
   }
   else {
