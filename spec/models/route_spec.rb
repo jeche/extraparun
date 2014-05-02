@@ -18,23 +18,9 @@ describe Route do
 		it { should_not be_valid }
 	end
 
-	describe "when numPoints is not present" do
-		before { @route.numPoints = "" }
-		it { should_not be_valid }
-	end
-
 	describe "when distance is not numeric" do
 		before { @route.distance = "a" }
 		it { should_not be_valid }
 	end
 
-	describe "when numPoints is not numeric" do
-		before { @route.numPoints = "a" }
-		it { should_not be_valid }
-	end
-
-	describe "when numPoints is not an integer" do
-		before { @route.numPoints = "3.1" }
-		it { should_not be_valid }
-	end
 end
