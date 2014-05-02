@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20140423051046) do
   add_index "points", ["route_id"], name: "index_points_on_route_id"
 
   create_table "routes", force: true do |t|
-    t.string   "distance"
+    t.float    "distance"
     t.integer  "runnable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
