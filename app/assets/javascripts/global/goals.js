@@ -50,6 +50,15 @@ function checkInputGoals() {
     return false;
   }
   else {
+    if (hr == "") {
+      $("#goal_gtHour").val(0);
+    }
+    if (min == "") {
+      $("#goal_gtMin").val(0);
+    }
+    if (sec == "") {
+      $("#goal_gtSec").val(0);
+    }
     return true;
   }
 }
