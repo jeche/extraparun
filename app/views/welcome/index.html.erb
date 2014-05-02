@@ -6,6 +6,13 @@
 <% if flash[:badBoy] %>
 	<div class="alert alert-danger"><%= flash[:badBoy] %></div>
 <% end %>
+<script>
+    $(function(){
+      $('#slider-id').liquidSlider({
+      	continuous:false
+      });
+    });
+</script>
 
 <section id="content">
 	<div class="container_12">
@@ -13,7 +20,6 @@
 			<div class="rounded liquid-slider" id="slider-id">
 				<% current_user.goals.each do |goal| %>	
 					<div>
-						
 	            		<div id="goalinfo<%= goal.id %>" data-gthour="<%= goal.gtHour %>" data-gtmin="<%= goal.gtMin %>" data-gtsec="<%= goal.gtSec %>" data-predhash=<%= JSON.generate(goal.predictions) %>></div>
 						<div id="chartdiv<%= goal.id %>"class="ready_for_graph" style="height:300px;width:623px; "></div>
 						<div class="banner">
@@ -36,18 +42,18 @@
 			  <div style="font-style: italic;">You can view separate runs by clicking on their date/name:</div>
               <table id="front-page-table">
 				<thead>
-					<th><strong>Date</strong></th>
-					<th><strong>Name</strong></th>
-					<th><strong>Time</strong></th>
-					<th><strong>Distance</strong></th>
+					<th class="space"><strong>Date</strong></th>
+					<th class="space"><strong>Name</strong></th>
+					<th class="space"><strong>Time</strong></th>
+					<th class="space"><strong>Distance</strong></th>
 				</thead>
 				<tbody>
 				<% current_user.runs.sort {|a,b| b.date <=> a.date }.each do |run| %>
 				<tr >
-				  <td ><%= link_to run.date, run_path(run) %></td>
-				  <td><%= link_to run.name, run_path(run) %></td>
-				  <td ><%= "#{run.hr} hr #{run.min} min #{run.sec} sec" %></td>
-				  <td><%= "#{run.routes.first.distance} mi."%></td>
+				  <td class="space"><%= link_to run.date, run_path(run) %></td>
+				  <td class="space"><%= link_to run.name, run_path(run) %></td>
+				  <td class="space"><%= "#{run.hr} hr #{run.min} min #{run.sec} sec" %></td>
+				  <td class="space"><%= "#{run.routes.first.distance} mi."%></td>
 				  </tr>
 				
 				<% end %>
@@ -80,8 +86,8 @@
 	</div>
 </section>
 
-
-<% current_user.goals.each do |goal| %>	            
-	<script>
+<script>
+	<% current_user.goals.each do |goal| %>	            
 		drawGraph(<%= goal.id %>);
-	</script><% end %>
+	<% end %>
+</script>

@@ -24,10 +24,20 @@
         if (status == google.maps.GeocoderStatus.OK) {
           //Got result, center the map and put it out there
           map.setCenter(results[0].geometry.location);
+          map.setZoom(10);
         } else {
           alert("Geocode was not successful for the following reason: " + status);
         }
       });
+    }
+  });
+
+ $('#submit_form').click(function(e){
+    e.preventDefault();
+    var okay_to_submit = checkInput();
+    console.log(okay_to_submit);
+    if (okay_to_submit) {
+      getMapData();
     }
   });
 </script>

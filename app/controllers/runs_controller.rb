@@ -29,6 +29,11 @@ class RunsController < ApplicationController
 		@route.runnable_id = @run.id
 		@route.save
 		@run.routes.push(@route)
+		if !current_user.goals.nil?
+			for goal in current_user.goals
+				predict(@run.date, goal.id)
+			end
+		end
 		redirect_to @run
 	end
 
@@ -40,7 +45,6 @@ class RunsController < ApplicationController
   		@run = Run.find(params[:id])
   		@run.routes.first.destroy
   		@run.destroy
- 
   		redirect_to runs_path
 	end
 
@@ -58,7 +62,31 @@ class RunsController < ApplicationController
 
 	def update
   		@run = Run.find(params[:id])
- 
+ 		route_string =  params[:newRoute]
+		route_string = route_string.gsub(/[()]/, "")
+		lat_lon_list = route_string.split(",")
+		count = 0
+		orderNum = 0
+		@route = Route.create(:distance => params[:distance], :elevation_gain => params[:elevationGain], :elevation_loss => params[:elevationLoss])
+		@route.save
+		while count < lat_lon_list.size
+			@route.points.create(:lat => lat_lon_list[count].to_f, :lon => lat_lon_list[count + 1].to_f, :orderNum => orderNum)
+			count += 2
+			orderNum += 1
+		end
+		@route.numPoints = orderNum
+		@route.runnable_id = @run.id
+		@route.save
+		if !@run.routes.first.nil?
+			oldRoute = @run.routes.shift
+			oldRoute.destroy
+		end
+		@run.routes.push(@route)
+		if !current_user.goals.nil?
+			for goal in current_user.goals
+				predict(@run.date, goal.id)
+			end
+		end
   		if @run.update(params[:run].permit(:hr, :min, :sec, :temp, :humidity, :name, :dist, :date))
     		redirect_to @run
   		else
