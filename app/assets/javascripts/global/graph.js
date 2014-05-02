@@ -13,32 +13,57 @@ function drawGraph(id) {
 	}
 
 	keys.sort();
-  console.log(keys);
 	// Gets the first time the user has listed and finds one day before that.
-	var startingTimeList = (keys[0].split("T"))[0].split("-");
-	var rightDate = parseInt(startingTimeList[2]) - 1;
-	var startingTime = startingTimeList[0] + "-" + startingTimeList[1] + "-" + rightDate
+  var start = keys[0].split("/");
+  var startingDate = new Date(start[2], start[0], start[1])
+  var dayBefore = new Date(startingDate.getDate());
+	dayBefore.setDate(startingDate.getDate() - 1);
 
+  if (dayBefore.getDate() > startingDate.getDate()) {
+    var startDay = dayBefore.getDate();
+    if (parseInt(start[0]) == 1) {
+      var startMonth = 12;
+      var startYear = parseInt(start[2]) - 1;
+    }
+    else {
+      var startMonth = parseInt(start[0]) - 1;
+      var startYear = parseInt(start[2]);
+    }
+    var startString = startMonth + "-" + startDay + "-" + startYear;
+  }
 	for (var i = 0; i < keys.length; i++) {
-		var time = keys[i].split("T");
-		predArray.push([time[0] + " " + time[1], predHash[keys[i]]])
-		goalArray.push([time[0] + " " + time[1], goalTime/3600.0]);
+    var time = keys[i].split("/");
+		predArray.push([time[0] + "-" + time[1] + "-" + time[2], predHash[keys[i]]])
+		goalArray.push([time[0] + "-" + time[1] + "-" + time[2], goalTime/3600.0]);
 	}
 
 	/*if ($('#chartdiv'+id).attr("class") != "ready_for_graph") {
 		graph.destroy();
 	}*/
-	console.log(predArray);
+
 	var graph = $.jqplot('chartdiv'.concat(id),  [ goalArray, predArray ], {
 		axes:{
 			xaxis:{
 				renderer:$.jqplot.DateAxisRenderer,
 				tickOptions:{formatString:'%b %#d, %y'},
-				min: startingTime,
+				min: startString,
 				tickInterval:'1 day'
 			}
 		},
-    	series:[{lineWidth:4, markerOptions:{style:'square'}}]
+    legend: {
+            show: true,
+            location:"nw"
+    },
+    series:[{
+        lineWidth:4, 
+        markerOptions:{style:'square'},
+        label:"Goal Time"
+      },
+      {
+        lineWidth:4,
+        label:"Predicted Time"
+      }
+    ]
 	});
 	$('#chartdiv'+id).attr("class") == "not_ready_for_graph"
 }
