@@ -32,7 +32,7 @@
   </div>
   <div class="actions indent">
     <span><%= f.submit class:'rounded search_button'%></span>
-	<span><%= link_to 'Cancel', "/signinpage", class:"rounded search_button" %></span>
+	<span><%= current_user==nil ? link_to("Cancel", "/signinpage", :class => "rounded search_button") : link_to("Cancel", user_path(current_user), :class => "rounded search_button") %></span>
   </div>
   
 <% end %>
