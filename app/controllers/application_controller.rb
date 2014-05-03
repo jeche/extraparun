@@ -16,12 +16,13 @@ class ApplicationController < ActionController::Base
 			count += 1
 		end
 		if count > 0
-			goal = Goal.find(id)
+			@goal = Goal.find(id)
 			avg = sum/count
-			pred = mainExtrapolation(0, goal.routes.first, avg).to_i
+			pred = mainExtrapolation(0, @goal.routes.first, avg).to_i
 			#pred = avg * goal.routes.first.distance.to_i
-			goal.predictions[date] = pred/3600.0
-			goal.save
+			@goal.predictions[date] = pred/3600.0
+			@goal.save
+
 			@ret = [(pred/3600), (pred%3600)/60, (pred%3600)%60, pred]
 		else
 			@ret = 0

@@ -11,7 +11,7 @@ function drawGraph(id) {
 	for (var key in predHash) {
 		keys.push(key);
 	}
-
+  console.log(keys);
 	keys.sort();
 	// Gets the first time the user has listed and finds one day before that.
   var start = keys[0].split("/");

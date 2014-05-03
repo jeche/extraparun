@@ -81,6 +81,7 @@ class GoalsController < ApplicationController
 	def update
   		@goal = Goal.find(params[:id])
   		@goal.predictions = Hash.new
+  		@goal.save
  		route_string =  params[:newRoute]
 		route_string = route_string.gsub(/[()]/, "")
 		lat_lon_list = route_string.split(",")
